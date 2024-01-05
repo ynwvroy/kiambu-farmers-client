@@ -1,6 +1,10 @@
 export function useProducts() {
   const router = useRouter();
 
+  const userType = useCookie("user_type");
+
+  const userId = useCookie<string | any>("user_id");
+
   const products = ref<IGetAllProducts>();
 
   const isEditingProducts = useState<boolean>(
@@ -58,9 +62,20 @@ export function useProducts() {
    */
   const getAllProducts = async () => {
     try {
-      const response = await useApi<IGetAllProducts>("/products", {
-        method: "GET",
-      });
+
+      if (userType.value === 'farmer') {
+
+        const response = await useApi<IGetAllProducts>(`/products/seller/${userId.value}`, {
+          method: "GET",
+        });
+
+      } else if (userType.value === 'super_admin') {
+
+        const response = await useApi<IGetAllProducts>("/products", {
+          method: "GET",
+        });
+
+      }
 
       productsFormState.value = response?.data;
       return response?.data;

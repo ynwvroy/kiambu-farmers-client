@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  const userType = useCookie("user_type");
+
 const {
   isEditingProducts,
   productsFormState,
