@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { eventCategoryFormState, isEditingEventCategory } = useEventCategories();
+const { ProductCategoryFormState, isEditingProductCategory } = useProductCategories();
 </script>
 
 <template>
@@ -7,11 +7,11 @@ const { eventCategoryFormState, isEditingEventCategory } = useEventCategories();
     <v-col cols="12" md="12">
       <BaseCard
         :title="
-          isEditingEventCategory === true ? 'Edit event category' : 'New event category'
+          isEditingProductCategory === true ? 'Edit product category' : 'New product category'
         "
       >
         <div class="pa-6">
-          <FormsEventCategoryForm />
+          <FormsProductCategoryForm />
         </div>
       </BaseCard>
     </v-col>

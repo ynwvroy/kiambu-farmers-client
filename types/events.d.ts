@@ -30,7 +30,7 @@ declare interface IEventFormState {
   is_public: number;
   created_at: Date | null;
   updated_at: Date | null;
-  category?: IGetSingleEventCategory | null;
+  category?: IGetSingleProductCategory | null;
   organization?: IOrganizationFormState | null;
 }
 declare interface IGetAllEvents {

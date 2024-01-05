@@ -2,25 +2,25 @@
 import { slugify } from "~~/utils/Slugify";
 
 const {
-  eventCategoryFormState,
-  isEditingEventCategory,
-  updateSingleEventCategory,
-  createEventCategory,
-} = useEventCategories();
+  ProductCategoryFormState,
+  isEditingProductCategory,
+  updateSingleProductCategory,
+  createProductCategory,
+} = useProductCategories();
 
 const saveCategory = async () => {
-  if (isEditingEventCategory.value) {
-    await updateSingleEventCategory(eventCategoryFormState.value.id);
+  if (isEditingProductCategory.value) {
+    await updateSingleProductCategory(ProductCategoryFormState.value.id);
   } else {
-    await createEventCategory();
+    await createProductCategory();
   }
 };
 
 // Watch for changes in the name and update the slug
 watch(
-  () => eventCategoryFormState.value.name,
+  () => ProductCategoryFormState.value.name,
   (newName) => {
-    eventCategoryFormState.value.slug = slugify(newName);
+    ProductCategoryFormState.value.slug = slugify(newName);
   }
 );
 </script>
@@ -33,7 +33,7 @@ watch(
         <div class="pb-4">
           <v-label class="font-weight-bold mb-1">Name</v-label>
           <v-text-field
-            v-model="eventCategoryFormState.name"
+            v-model="ProductCategoryFormState.name"
             variant="outlined"
             placeholder="Name of the category"
             hide-details
@@ -44,7 +44,7 @@ watch(
         <div>
           <v-label class="font-weight-bold mb-1">Slug</v-label>
           <v-text-field
-            v-model="eventCategoryFormState.slug"
+            v-model="ProductCategoryFormState.slug"
             variant="outlined"
             readonly
             hide-details
@@ -55,7 +55,7 @@ watch(
       <v-col cols="12" md="6" xs="12">
         <v-label class="font-weight-bold mb-1">Banner</v-label>
         <v-textarea
-          v-model="eventCategoryFormState.banner_url"
+          v-model="ProductCategoryFormState.banner_url"
           placeholder="Give a banner image for this category."
           rows="5"
           variant="outlined"
@@ -67,7 +67,7 @@ watch(
       <v-col cols="12">
         <v-label class="font-weight-bold mb-1">Description</v-label>
         <v-textarea
-          v-model="eventCategoryFormState.description"
+          v-model="ProductCategoryFormState.description"
           placeholder="Give a summary of your what qualifies for this category"
           rows="5"
           variant="outlined"
@@ -80,7 +80,7 @@ watch(
 
     <v-row class="py-12 px-6" justify="end">
       <v-btn color="secondary" @click="saveCategory()">
-        {{ isEditingEventCategory ? "Update" : "Create" }}
+        {{ isEditingProductCategory ? "Update" : "Create" }}
       </v-btn>
     </v-row>
 
@@ -89,9 +89,9 @@ watch(
       <a
         style="text-decoration: underline;"
         target="_blank"
-        :href="`https://kiambu-farmers.com/event-categories/${eventCategoryFormState.slug}`"
-        >https://kiambu-farmers.com/event-categories/{{
-          eventCategoryFormState.slug
+        :href="`https://kiambu-farmers.com/product-categories/${ProductCategoryFormState.slug}`"
+        >https://kiambu-farmers.com/product-categories/{{
+          ProductCategoryFormState.slug
         }}</a
       >
     </p>

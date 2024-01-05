@@ -160,7 +160,7 @@ const showDeleteConfirm = async (comment_id: number) => {
     </v-row>
 
     <!-- ---------------------------------------------- -->
-    <!--EventCategories table -->
+    <!--ProductCategories table -->
     <!-- ---------------------------------------------- -->
     <v-row>
       <v-col cols="12" md="12">

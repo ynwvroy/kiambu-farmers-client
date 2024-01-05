@@ -173,7 +173,7 @@ const editCareerApplication = async (application_id: string) => {
 
 const showDeleteConfirm = async (application_id: number) => {
   Modal.confirm({
-    title: "Delete event category",
+    title: "Delete product category",
     icon: TrashIcon,
     content: "Are you sure you want to delete this category?",
     okText: "Yes",

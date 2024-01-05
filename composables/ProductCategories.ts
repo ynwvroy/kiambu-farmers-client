@@ -1,9 +1,9 @@
 import { notification } from "ant-design-vue";
 
-export function useEventCategories() {
-  const eventCategories = ref<IGetAllEventCategories>();
+export function useProductCategories() {
+  const productCategories = ref<IGetAllProductCategories>();
 
-  const isEditingEventCategory = useState<boolean>(
+  const isEditingProductCategory = useState<boolean>(
     "is-editing-event-category",
     () => false
   );
@@ -12,11 +12,11 @@ export function useEventCategories() {
 
   /**
    * ---------------------------------------------------
-   * Event category FormState
+   * Product category FormState
    * ---------------------------------------------------
    *
    */
-  const eventCategoryFormState = useState<IEventCategoryFormState>(
+  const ProductCategoryFormState = useState<IProductCategoryFormState>(
     "event-category",
     () => ({
       name: "",
@@ -28,12 +28,12 @@ export function useEventCategories() {
 
   /**
    * ---------------------------------------------------
-   * Reset Event category FormState
+   * Reset Product category FormState
    * ---------------------------------------------------
    *
    */
-  const resetEventCategoryFormState = () => {
-    eventCategoryFormState.value = {
+  const resetProductCategoryFormState = () => {
+    ProductCategoryFormState.value = {
       id: 0,
       name: "",
       description: "",
@@ -50,138 +50,138 @@ export function useEventCategories() {
    * ---------------------------------------------------
    *
    */
-  const getAllEventCategories = async () => {
+  const getAllProductCategories = async () => {
     try {
-      const response = await useApi<IGetAllEventCategories>(
-        "/event-categories",
+      const response = await useApi<IGetAllProductCategories>(
+        "/product-categories",
         {
           method: "GET",
         }
       );
 
-      eventCategoryFormState.value = response?.data;
+      ProductCategoryFormState.value = response?.data;
       return response?.data;
     } catch (error) {
-      console.error("Error getAllEventCategories::: ", error);
+      console.error("Error getAllProductCategories::: ", error);
     }
   };
 
   /**
    * ---------------------------------------------------
-   * Create new event category
+   * Create new product category
    * ---------------------------------------------------
    *
    */
-  const createEventCategory = async () => {
+  const createProductCategory = async () => {
     try {
-      const response = await useApi<ICreateEventCategoryResponse>(
-        "/event-categories",
+      const response = await useApi<ICreateProductCategoryResponse>(
+        "/product-categories",
         {
           method: "POST",
-          data: eventCategoryFormState.value satisfies ICreateEventCategoryRequest,
+          data: ProductCategoryFormState.value satisfies ICreateProductCategoryRequest,
         }
       );
 
       if (response?.success) {
         notification["success"]({
-          description: "Event category created successfully.",
+          description: "Product category created successfully.",
           message: "Success",
           placement: "bottomRight",
           duration: 8,
         });
 
-        router.push("/event-categories");
-        resetEventCategoryFormState();
+        router.push("/product-categories");
+        resetProductCategoryFormState();
         return response?.data;
       } else {
         notification["error"]({
-          description: "Could not create the event category. Please try again.",
+          description: "Could not create the product category. Please try again.",
           message: "Failed",
           placement: "bottomRight",
           duration: 8,
         });
       }
     } catch (error) {
-      console.error("Error createEventCategory::: ", error);
+      console.error("Error createProductCategory::: ", error);
     }
   };
 
   /**
    * ---------------------------------------------------
-   * Get single event category
+   * Get single product category
    * ---------------------------------------------------
    *
    */
-  const getSingleEventCategory = async (category_id: string) => {
+  const getSingleProductCategory = async (category_id: string) => {
     try {
-      const response = await useApi<IGetSingleEventCategory>(
-        `/event-categories/${category_id}`,
+      const response = await useApi<IGetSingleProductCategory>(
+        `/product-categories/${category_id}`,
         {
           method: "GET",
         }
       );
 
       if (response?.success === true) {
-        eventCategoryFormState.value = response.data;
+        ProductCategoryFormState.value = response.data;
       }
 
       return response;
     } catch (error) {
-      console.error("Error getSingleEventCategory::: ", error);
+      console.error("Error getSingleProductCategory::: ", error);
     }
   };
 
   /**
    * ---------------------------------------------------
-   * Update single event category
+   * Update single product category
    * ---------------------------------------------------
    *
    */
-  const updateSingleEventCategory = async (category_id: number | undefined) => {
+  const updateSingleProductCategory = async (category_id: number | undefined) => {
     try {
-      const response = await useApi<IUpdateEventCategoryResponse>(
-        `/event-categories/${category_id}`,
+      const response = await useApi<IUpdateProductCategoryResponse>(
+        `/product-categories/${category_id}`,
         {
           method: "PUT",
-          data: eventCategoryFormState.value satisfies IUpdateEventCategoryRequest,
+          data: ProductCategoryFormState.value satisfies IUpdateProductCategoryRequest,
         }
       );
 
       if (response?.success) {
         notification["success"]({
-          description: "Event category updated successfully.",
+          description: "Product category updated successfully.",
           message: "Success",
           placement: "bottomRight",
           duration: 8,
         });
 
-        router.push("/event-categories");
-        resetEventCategoryFormState();
-        isEditingEventCategory.value = false;
+        router.push("/product-categories");
+        resetProductCategoryFormState();
+        isEditingProductCategory.value = false;
         return response?.data;
       } else {
         notification["error"]({
-          description: "Could not update the event category. Please try again.",
+          description: "Could not update the product category. Please try again.",
           message: "Failed",
           placement: "bottomRight",
           duration: 8,
         });
       }
     } catch (error) {
-      console.error("Error updateSingleEventCategory::: ", error);
+      console.error("Error updateSingleProductCategory::: ", error);
     }
   };
 
   /**
    * ---------------------------------------------------
-   * Delete single event category
+   * Delete single product category
    * ---------------------------------------------------
    *
    */
-  const deleteSingleEventCategory = async (category_id: number) => {
+  const deleteSingleProductCategory = async (category_id: number) => {
     try {
-      const deleteCategoryResponse = await useApi<IDeleteEventCategoryResponse>(
-        `/event-categories/${category_id}`,
+      const deleteCategoryResponse = await useApi<IDeleteProductCategoryResponse>(
+        `/product-categories/${category_id}`,
         {
           method: "DELETE",
         }
@@ -189,7 +189,7 @@ export function useEventCategories() {
 
       if (deleteCategoryResponse?.success === true) {
         notification["success"]({
-          description: "Event category deleted successfully.",
+          description: "Product category deleted successfully.",
           message: "Success",
           placement: "bottomRight",
           duration: 8,
@@ -212,20 +212,20 @@ export function useEventCategories() {
         });
       }
     } catch (error) {
-      console.error("Error deleteSingleEventCategory::: ", error);
+      console.error("Error deleteSingleProductCategory::: ", error);
     }
   };
 
 
   return {
-    eventCategories,
-    eventCategoryFormState,
-    isEditingEventCategory,
-    getAllEventCategories,
-    createEventCategory,
-    getSingleEventCategory,
-    updateSingleEventCategory,
-    deleteSingleEventCategory,
-    resetEventCategoryFormState,
+    productCategories,
+    ProductCategoryFormState,
+    isEditingProductCategory,
+    getAllProductCategories,
+    createProductCategory,
+    getSingleProductCategory,
+    updateSingleProductCategory,
+    deleteSingleProductCategory,
+    resetProductCategoryFormState,
   };
 }

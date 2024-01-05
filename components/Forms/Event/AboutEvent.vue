@@ -65,7 +65,7 @@ watch(
       <v-text-field
         v-model="eventFormState.event_category_id"
         variant="outlined"
-        placeholder="An event category helps your event appear more in searches"
+        placeholder="An product category helps your event appear more in searches"
         hide-details
         color="primary"
       ></v-text-field>

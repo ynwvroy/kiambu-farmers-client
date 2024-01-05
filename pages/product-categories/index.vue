@@ -4,7 +4,7 @@ import type { TableColumnsType } from "ant-design-vue";
 import { TrashIcon } from "vue-tabler-icons";
 
 useHead({
-  title: "Event Categories",
+  title: "Product Categories",
   meta: [
     {
       name: "description",
@@ -15,19 +15,19 @@ useHead({
 });
 
 const {
-  getSingleEventCategory,
-  isEditingEventCategory,
-  resetEventCategoryFormState,
-  deleteSingleEventCategory,
-  eventCategoryFormState,
-  getAllEventCategories,
-} = useEventCategories();
+  getSingleProductCategory,
+  isEditingProductCategory,
+  resetProductCategoryFormState,
+  deleteSingleProductCategory,
+  ProductCategoryFormState,
+  getAllProductCategories,
+} = useProductCategories();
 
-const response = await useApi<IGetAllEventCategories>("/event-categories", {
+const response = await useApi<IGetAllProductCategories>("/product-categories", {
   method: "GET",
 });
 
-eventCategoryFormState.value = response?.data;
+ProductCategoryFormState.value = response?.data;
 
 const router = useRouter();
 
@@ -73,21 +73,21 @@ function handleResizeColumn(w: any, col: any) {
   col.width = w;
 }
 
-const editEventCategory = async (category_id: string) => {
-  isEditingEventCategory.value = true;
-  const response = await getSingleEventCategory(category_id);
-  router.push(`/event-categories/${response?.data?.slug}`);
+const editProductCategory = async (category_id: string) => {
+  isEditingProductCategory.value = true;
+  const response = await getSingleProductCategory(category_id);
+  router.push(`/product-categories/${response?.data?.slug}`);
 };
 
-const openEventCategory = () => {
-  isEditingEventCategory.value = false;
-  resetEventCategoryFormState();
-  router.push("/event-categories/new-category");
+const openProductCategory = () => {
+  isEditingProductCategory.value = false;
+  resetProductCategoryFormState();
+  router.push("/product-categories/new-category");
 };
 
 const showDeleteConfirm = async (category_id: number) => {
   Modal.confirm({
-    title: "Delete event category",
+    title: "Delete product category",
     icon: TrashIcon,
     content: "Are you sure you want to delete this category?",
     okText: "Yes",
@@ -95,8 +95,8 @@ const showDeleteConfirm = async (category_id: number) => {
     okType: "danger",
     cancelText: "No",
     async onOk() {
-      await deleteSingleEventCategory(category_id);
-      await getAllEventCategories();
+      await deleteSingleProductCategory(category_id);
+      await getAllProductCategories();
     },
     onCancel() {
       return;
@@ -110,40 +110,40 @@ const showDeleteConfirm = async (category_id: number) => {
     <!-- ---------------------------------------------- -->
     <!--Title -->
     <!-- ---------------------------------------------- -->
-    <h1 class="text-h1 py-4">Event Categories</h1>
+    <h1 class="text-h1 py-4">Product Categories</h1>
 
     <!-- ---------------------------------------------- -->
     <!--Analytics -->
     <!-- ---------------------------------------------- -->
     <v-row class="py-12">
       <v-col cols="12" md="4" xs="12">
-        <ModulesEventCategoriesLeastPopular />
+        <ModulesProductCategoriesLeastPopular />
       </v-col>
       <v-col cols="12" md="4" xs="12">
-        <ModulesEventCategoriesMostPopular />
+        <ModulesProductCategoriesMostPopular />
       </v-col>
       <v-col cols="12" md="4" xs="12">
-        <ModulesEventCategoriesTotal />
+        <ModulesProductCategoriesTotal />
       </v-col>
     </v-row>
 
     <!-- ---------------------------------------------- -->
-    <!--EventCategories table -->
+    <!--ProductCategories table -->
     <!-- ---------------------------------------------- -->
     <v-row>
       <v-col cols="12" md="12">
         <div class="py-7 pt-1">
           <div class="px-3 pb-5">
-            <v-btn color="info" @click="openEventCategory()">
+            <v-btn color="info" @click="openProductCategory()">
               <div class="d-flex align-center gap-2">
                 <PlusSquareOutlined :size="24" />
-                Create Event Category
+                Create Product Category
               </div>
             </v-btn>
           </div>
           <div>
             <a-table
-              :dataSource="eventCategoryFormState"
+              :dataSource="ProductCategoryFormState"
               :columns="columns"
               @resizeColumn="handleResizeColumn"
               :scroll="{ x: 2000 }"
@@ -171,7 +171,7 @@ const showDeleteConfirm = async (category_id: number) => {
                     size="18"
                     color="blue"
                     style="cursor: pointer"
-                    @click="editEventCategory(record.id)"
+                    @click="editProductCategory(record.id)"
                   />
                 </template>
               </template>
