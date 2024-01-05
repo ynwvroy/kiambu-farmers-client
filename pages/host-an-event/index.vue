@@ -11,7 +11,7 @@
           </p>
           <v-row>
             <v-col cols="12" md="4" xs="12">
-              <BaseContentCard title="Team help">
+              <BaseContentCard title="Order help">
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum
                 mollitia pariatur accusamus?
               </BaseContentCard>

@@ -4,12 +4,12 @@ import type { TableColumnsType } from "ant-design-vue";
 import { TrashIcon } from "vue-tabler-icons";
 
 useHead({
-  title: "Teams",
+  title: "Orders",
   meta: [
     {
       name: "description",
       content:
-        "Explore and discover different teams. Connect with like-minded groups and entities.",
+        "Explore and discover different orders. Connect with like-minded groups and entities.",
     },
   ],
 });
@@ -17,19 +17,19 @@ useHead({
 const router = useRouter();
 
 const {
-  isEditingTeams,
-  resetTeamsFormState,
-  getSingleTeam,
-  deleteSingleTeam,
-  teamsFormState,
-  getAllTeams,
-} = useTeams();
+  isEditingOrders,
+  resetOrdersFormState,
+  getSingleOrder,
+  deleteSingleOrder,
+  ordersFormState,
+  getAllOrders,
+} = useOrders();
 
-const response = await useApi<IGetAllTeams>("/teams", {
+const response = await useApi<IGetAllOrders>("/orders", {
   method: "GET",
 });
 
-teamsFormState.value = response?.data;
+ordersFormState.value = response?.data;
 
 const columns = ref<TableColumnsType>([
   {
@@ -40,40 +40,74 @@ const columns = ref<TableColumnsType>([
     width: 50,
   },
   {
-    title: "Name",
-    dataIndex: "name",
-    key: "name",
+    title: "Tracking number",
+    dataIndex: "tracking_number",
+    key: "tracking_number",
+    resizable: true,
+    width: 150,
+  },
+  {
+    title: "Product",
+    dataIndex: "product_id",
+    key: "product_id",
     resizable: true,
     width: 120,
   },
   {
-    title: "Organization",
-    dataIndex: "organization_id",
-    key: "organization_id",
+    title: "Buyer",
+    dataIndex: "buyer_id",
+    key: "buyer_id",
     resizable: true,
     width: 150,
   },
   {
-    title: "Event",
-    dataIndex: "event_id",
-    key: "event_id",
+    title: "Seller",
+    dataIndex: "seller_id",
+    key: "seller_id",
     resizable: true,
     width: 150,
   },
   {
-    title: "Description",
-    dataIndex: "description",
-    key: "description",
+    title: "Quantity",
+    dataIndex: "quantity",
+    key: "quantity",
     resizable: true,
-    ellipsis: true,
-    width: 200,
+    width: 60,
   },
   {
-    title: "Date created",
-    dataIndex: "created_at",
-    key: "created_at",
+    title: "Total price",
+    dataIndex: "total_price",
+    key: "total_price",
     resizable: true,
-    width: 100,
+    width: 60,
+  },
+  {
+    title: "Status",
+    dataIndex: "status",
+    key: "status",
+    resizable: true,
+    width: 150,
+  },
+  {
+    title: "Payment method",
+    dataIndex: "payment_method",
+    key: "payment_method",
+    resizable: true,
+    width: 150,
+  },
+  {
+    title: "Transaction ID",
+    dataIndex: "payment_transaction_id",
+    key: "payment_transaction_id",
+    resizable: true,
+    width: 150,
+  },
+  {
+    title: "Delivery Address",
+    dataIndex: "delivery_address",
+    key: "delivery_address",
+    resizable: true,
+    width: 150,
   },
   {
     title: "Actions",
@@ -87,19 +121,19 @@ function handleResizeColumn(w: any, col: any) {
   col.width = w;
 }
 
-const editTeam = async (team_id: string) => {
-  isEditingTeams.value = true;
-  const response = await getSingleTeam(team_id);
-  router.push(`/teams/${response?.slug}`);
+const editOrder = async (order_id: string) => {
+  isEditingOrders.value = true;
+  const response = await getSingleOrder(order_id);
+  router.push(`/orders/${response?.id}`);
 };
 
-const openTeamsForm = () => {
-  isEditingTeams.value = false;
-  resetTeamsFormState();
-  router.push("/teams/new-team");
+const openOrdersForm = () => {
+  isEditingOrders.value = false;
+  resetOrdersFormState();
+  router.push("/orders/new-order");
 };
 
-const showDeleteConfirm = async (team_id: number) => {
+const showDeleteConfirm = async (order_id: number) => {
   Modal.confirm({
     title: "Delete product",
     icon: TrashIcon,
@@ -109,8 +143,8 @@ const showDeleteConfirm = async (team_id: number) => {
     okType: "danger",
     cancelText: "No",
     async onOk() {
-      await deleteSingleTeam(team_id);
-      await getAllTeams();
+      await deleteSingleOrder(order_id);
+      await getAllOrders();
     },
     onCancel() {
       return;
@@ -124,70 +158,75 @@ const showDeleteConfirm = async (team_id: number) => {
     <!-- ---------------------------------------------- -->
     <!--Title -->
     <!-- ---------------------------------------------- -->
-    <h1 class="text-h1 py-4">Teams</h1>
+    <h1 class="text-h1 py-4">Orders</h1>
 
     <!-- ---------------------------------------------- -->
     <!--Analytics -->
     <!-- ---------------------------------------------- -->
     <v-row class="py-12">
       <v-col cols="12" md="4" xs="12">
-        <ModulesTeamsLeastPopular />
+        <ModulesOrdersLeastPopular />
       </v-col>
       <v-col cols="12" md="4" xs="12">
-        <ModulesTeamsMostPopular />
+        <ModulesOrdersMostPopular />
       </v-col>
       <v-col cols="12" md="4" xs="12">
-        <ModulesTeamsTotal />
+        <ModulesOrdersTotal />
       </v-col>
     </v-row>
 
     <!-- ---------------------------------------------- -->
-    <!--Teams table -->
+    <!--Orders table -->
     <!-- ---------------------------------------------- -->
     <v-row>
       <v-col cols="12" md="12">
         <div class="py-7 pt-1">
           <div class="px-3 pb-5">
-            <v-btn color="info" @click="openTeamsForm()">
+            <v-btn color="info" @click="openOrdersForm()">
               <div class="d-flex align-center gap-2">
                 <PlusSquareOutlined :size="24" />
-                Create Team
+                Create Order
               </div>
             </v-btn>
           </div>
           <div>
             <a-table
-              :dataSource="teamsFormState"
+              :dataSource="ordersFormState"
               :columns="columns"
               @resizeColumn="handleResizeColumn"
               :scroll="{ x: 2000 }"
               :expand-column-width="1000"
             >
               <template #bodyCell="{ column, record }">
-                <!-- Date -->
-                <template v-if="column.key === 'created_at'">
-                  <span>
-                    {{ record.created_at.split("T")[0] }}
-                  </span>
-                </template>
 
-                <!-- Organization relation -->
-                <template v-if="column.key === 'organization_id'">
+                <!-- Product relation -->
+                <template v-if="column.key === 'product_id'">
                   <span
-                    v-if="record.organization_id && record.organization_id > 0"
+                    v-if="record.product_id && record.product_id > 0"
                   >
-                    ({{ record.organization.id }})
-                    {{ record?.organization?.name }}
+                    ({{ record.product.id }})
+                    {{ record?.product?.name }}
                   </span>
-                  <span v-else> - </span>
                 </template>
 
-                <!-- Event relation -->
-                <template v-if="column.key === 'event_id'">
-                  <span v-if="record.event_id && record.event_id > 0">
-                    ({{ record.event.id }}) {{ record?.event?.name }}
+                <!-- Seller relation -->
+                <template v-if="column.key === 'seller_id'">
+                  <span
+                    v-if="record.seller_id && record.seller_id > 0"
+                  >
+                    ({{ record.seller.id }})
+                    {{ record?.seller?.full_name }}
                   </span>
-                  <span v-else> - </span>
+                </template>
+
+                 <!-- Buyer relation -->
+                 <template v-if="column.key === 'buyer_id'">
+                  <span
+                    v-if="record.buyer_id && record.buyer_id > 0"
+                  >
+                    ({{ record.buyer.id }})
+                    {{ record?.buyer?.full_name }}
+                  </span>
                 </template>
 
                 <!-- Actions -->
@@ -203,7 +242,7 @@ const showDeleteConfirm = async (team_id: number) => {
                     size="18"
                     color="blue"
                     style="cursor: pointer"
-                    @click="editTeam(record.id)"
+                    @click="editOrder(record.id)"
                   />
                 </template>
               </template>

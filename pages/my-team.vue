@@ -1,9 +1,9 @@
 <script setup lang="ts">
 
 useHead({
-  title: "My Team",
+  title: "My Order",
   meta: [
-    { name: "description", content: "Collaborate and manage your team members. Stay connected and work together seamlessly." },
+    { name: "description", content: "Collaborate and manage your order members. Stay connected and work together seamlessly." },
 
   ],
 });
@@ -13,7 +13,7 @@ useHead({
 <template>
   <v-row>
     <v-col cols="12" md="12">
-      <BaseCard title="Manage your teams here">
+      <BaseCard title="Manage your orders here">
         <div class="pa-7 pt-1">
           <BaseProductCards />
         </div>

@@ -13,7 +13,7 @@ useHead({
     {
       name: "description",
       content:
-        "Explore and apply for exciting career opportunities at our company. Join us and be a part of our amazing team!",
+        "Explore and apply for exciting career opportunities at our company. Join us and be a part of our amazing order!",
     },
     {
       name: "keywords",
@@ -26,7 +26,7 @@ useHead({
     {
       property: "og:description",
       content:
-        "Explore and apply for exciting career opportunities at our company. Join us and be a part of our amazing team!",
+        "Explore and apply for exciting career opportunities at our company. Join us and be a part of our amazing order!",
     },
     {
       property: "og:image",
@@ -44,7 +44,7 @@ useHead({
     {
       name: "twitter:description",
       content:
-        "Explore and apply for exciting career opportunities at our company. Join us and be a part of our amazing team!",
+        "Explore and apply for exciting career opportunities at our company. Join us and be a part of our amazing order!",
     },
     {
       name: "twitter:image",

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 useHead({
-  title: "My Events",
+  title: "My orders",
   meta: [
     {
       name: "description",
       content:
-        "View and manage the events you have organized. Stay organized and keep track of your events.",
+        "View and manage the orders you have organized. Stay organized and keep track of your orders.",
     },
   ],
 });
@@ -13,7 +13,7 @@ useHead({
 <template>
   <v-row>
     <v-col cols="12" md="12">
-      <BaseCard title="Here are the all events you hosted!">
+      <BaseCard title="Here are the all orders you hosted!">
         <div class="pa-7 pt-1">
           <BaseProductCards />
         </div>

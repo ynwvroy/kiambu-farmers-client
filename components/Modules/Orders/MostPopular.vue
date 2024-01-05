@@ -5,12 +5,12 @@
     <v-card elevation="5" rounded="lg" class="withbg">
       <v-card-item>
         <div class="d-sm-flex align-center justify-space-between pt-sm-2">
-          <v-card-title class="text-h5">Least popular</v-card-title>
+          <v-card-title class="text-h5">Most popular</v-card-title>
         </div>
         <v-row>
           <v-col cols="12">
             <div class="mt-6">
-              <h3 class="text-h3 text-center pb-4">Team 1</h3>
+              <h3 class="text-h3 text-center pb-4">Order 1</h3>
               <div class="mt-1">
                 <v-avatar class="bg-lightsuccess text-success" size="25">
                   <ArrowUpLeftIcon size="20" />

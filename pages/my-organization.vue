@@ -60,7 +60,7 @@ if (userOrganizationId.value && userOrganizationId.value !== null) {
         </BaseCard>
       </v-col>
       <v-col cols="12" md="4" xs="12">
-        <BaseCard rounded="xl" title="Teams" elevation="12">
+        <BaseCard rounded="xl" title="Orders" elevation="12">
           <p class="pa-4">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed
             corrupti neque praesentium.

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-const { teamsFormState, isEditingTeams } = useTeams();
+const { ordersFormState, isEditingOrders } = useOrders();
 
 useHead({
-  title: "Single Team",
+  title: "Single Order",
   meta: [
     {
       name: "description",
@@ -17,10 +17,10 @@ useHead({
   <v-row>
     <v-col cols="12" md="12">
       <BaseCard
-        :title="isEditingTeams === true ? 'Reviewing team' : 'New team'"
+        :title="isEditingOrders === true ? 'Reviewing order' : 'New order'"
       >
         <div class="pa-6">
-          <FormsTeamsForm />
+          <FormsOrdersForm />
         </div>
       </BaseCard>
     </v-col>
