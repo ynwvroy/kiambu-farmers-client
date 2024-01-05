@@ -83,8 +83,8 @@ watch(
     <a
       style="text-decoration: underline"
       target="_blank"
-      :href="`https://eveenti.com/organizations/${organizationFormState.slug}`"
-      >https://eveenti.com/organizations/{{ organizationFormState.slug }}</a
+      :href="`https://kiambu-farmers.com/organizations/${organizationFormState.slug}`"
+      >https://kiambu-farmers.com/organizations/{{ organizationFormState.slug }}</a
     >
   </p>
 </template>

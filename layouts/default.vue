@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
-const title = ref("Eveenti");
+const title = ref("Kiambu Farmers");
 useHead({
   meta: [{ content: title }],
   titleTemplate: (titleChunk) => {
-    return titleChunk ? `${titleChunk}` : "Eveenti";
+    return titleChunk ? `${titleChunk}` : "Kiambu Farmers";
   },
 });
 </script>

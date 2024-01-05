@@ -199,7 +199,7 @@ export function useAuthentication() {
 
       if (response?.data?.success) {
         notification["success"]({
-          description: `Welcome to Eveenti, ${registerFormState.value.username}! We think you'll love it here.`,
+          description: `Welcome to Kiambu Farmers, ${registerFormState.value.username}! We think you'll love it here.`,
           message: "Account has been created successfully",
           placement: "bottomRight",
           duration: 8,

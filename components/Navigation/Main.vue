@@ -42,7 +42,7 @@ const sidebarItems = ref([
     to: "/home",
     user_type: ["super_admin", "event_organizer", "user"],
   },
-  { header: "Eveenti Management", user_type: ["super_admin"] },
+  { header: "Kiambu Farmers Management", user_type: ["super_admin"] },
   {
     title: "Career Applications",
     icon: FileDescriptionIcon,
@@ -195,42 +195,42 @@ const sidebarItems = ref([
   // },
 ]);
 
-const eveentiItems = ref([
+const kiambufarmersItems = ref([
   { header: "Reservo" },
   {
-    title: "Eveenti Website",
+    title: "Kiambu Farmers Website",
     icon: BrandWebflowIcon,
-    href: "https://eveenti.com",
+    href: "https://kiambu-farmers.com",
     user_type: ["user", "event_organizer"],
   },
   {
     title: "Upcoming events",
     icon: ConfettiIcon,
-    href: "https://eveenti.com/events",
+    href: "https://kiambu-farmers.com/events",
     user_type: ["user", "event_organizer"],
   },
   {
     title: "All organizations",
     icon: ClearAllIcon,
-    href: "https://eveenti.com/organizations",
+    href: "https://kiambu-farmers.com/organizations",
     user_type: ["user", "event_organizer"],
   },
   {
     title: "Leave a comment",
     icon: MessageDotsIcon,
-    href: "https://eveenti.com/reviews",
+    href: "https://kiambu-farmers.com/reviews",
     user_type: ["user", "event_organizer"],
   },
   {
     title: "Terms of Use",
     icon: LockSquareIcon,
-    href: "https://eveenti.com/terms",
+    href: "https://kiambu-farmers.com/terms",
     user_type: ["user", "event_organizer"],
   },
   {
     title: "Privacy Policy",
     icon: BanIcon,
-    href: "https://eveenti.com/privacy",
+    href: "https://kiambu-farmers.com/privacy",
     user_type: ["user", "event_organizer"],
   },
 ]);
@@ -299,7 +299,7 @@ watchEffect(() => {
               </a>
             </template>
           </template>
-          <template v-for="item in eveentiItems" :key="item.title">
+          <template v-for="item in kiambufarmersItems" :key="item.title">
             <NavigationSidebarNavGroup :item="item" v-if="item.header" />
             <template v-else>
               <!-- <router-link

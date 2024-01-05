@@ -6,7 +6,7 @@ useHead({
   titleTemplate: (titleChunk) => {
     return titleChunk
       ? `${titleChunk} - 404-Page Not Found`
-      : "Eveenti Dashboard";
+      : "Kiambu Farmers Dashboard";
   },
 });
 </script>

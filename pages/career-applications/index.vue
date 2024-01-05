@@ -21,7 +21,7 @@ useHead({
     },
     {
       property: "og:title",
-      content: "Career Applications - Eveenti",
+      content: "Career Applications - Kiambu Farmers",
     },
     {
       property: "og:description",
@@ -30,16 +30,16 @@ useHead({
     },
     {
       property: "og:image",
-      content: "https://eveenti.com/career-applications-image.jpg",
+      content: "https://kiambu-farmers.com/career-applications-image.jpg",
     },
     {
       property: "og:url",
-      content: "https://eveenti.com/career-applications",
+      content: "https://kiambu-farmers.com/career-applications",
     },
     { name: "twitter:card", content: "summary_large_image" },
     {
       name: "twitter:title",
-      content: "Career Applications - Eveenti",
+      content: "Career Applications - Kiambu Farmers",
     },
     {
       name: "twitter:description",
@@ -48,7 +48,7 @@ useHead({
     },
     {
       name: "twitter:image",
-      content: "https://eveenti.com/career-applications-image.jpg",
+      content: "https://kiambu-farmers.com/career-applications-image.jpg",
     },
   ],
 });

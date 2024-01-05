@@ -89,8 +89,8 @@ watch(
       <a
         style="text-decoration: underline;"
         target="_blank"
-        :href="`https://eveenti.com/event-categories/${eventCategoryFormState.slug}`"
-        >https://eveenti.com/event-categories/{{
+        :href="`https://kiambu-farmers.com/event-categories/${eventCategoryFormState.slug}`"
+        >https://kiambu-farmers.com/event-categories/{{
           eventCategoryFormState.slug
         }}</a
       >
