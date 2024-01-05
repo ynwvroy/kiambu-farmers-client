@@ -35,205 +35,104 @@ const sDrawer = ref(true);
 const userType = useCookie("user_type");
 
 const sidebarItems = ref([
-  { header: "Home" },
+  { header: "Admin Dashboard", user_type: ["super_admin"] },
   {
     title: "Dashboard",
     icon: LayoutDashboardIcon,
     to: "/home",
-    user_type: ["super_admin", "event_organizer", "user"],
+    user_type: ["super_admin", "farmer", "user"],
   },
-  { header: "Kiambu Farmers Management", user_type: ["super_admin"] },
   {
-    title: "Career Applications",
+    title: "Products",
     icon: FileDescriptionIcon,
-    to: "/career-applications",
+    to: "/products",
     user_type: ["super_admin"],
   },
   {
-    title: "Mailing List",
+    title: "Product Categories",
     icon: MailFastIcon,
-    to: "/mailing-list",
+    to: "/product-categories",
     user_type: ["super_admin"],
   },
   {
-    title: "Events",
+    title: "Orders",
     icon: ConfettiIcon,
-    to: "/events",
+    to: "/orders",
     user_type: ["super_admin"],
   },
+  { header: "Farmer Dashboard", user_type: ["farmer"] },
   {
-    title: "Tickets",
-    icon: TicketIcon,
-    to: "/tickets",
-    user_type: ["super_admin"],
-  },
-  {
-    title: "Promo Codes",
-    icon: GiftIcon,
-    to: "/promo-codes",
-    user_type: ["super_admin"],
-  },
-  {
-    title: "Users",
-    icon: UsersIcon,
-    to: "/users",
-    user_type: ["super_admin"],
-  },
-  {
-    title: "Queries & Contact",
-    icon: QuestionMarkIcon,
-    to: "/queries",
-    user_type: ["super_admin"],
-  },
-  {
-    title: "Organizations",
-    icon: AffiliateIcon,
-    to: "/organizations",
-    user_type: ["super_admin"],
-  },
-  {
-    title: "Teams",
-    icon: ScubaMaskIcon,
-    to: "/teams",
-    user_type: ["super_admin"],
-  },
-  {
-    title: "Tasks",
-    icon: LayoutKanbanIcon,
-    to: "/tasks",
-    user_type: ["super_admin"],
-  },
-  {
-    title: "Event Categories",
-    icon: Category2Icon,
-    to: "/event-categories",
-    user_type: ["super_admin"],
-  },
-  {
-    title: "Organizations comments",
-    icon: MessageIcon,
-    to: "/organizations-comments",
-    user_type: ["super_admin"],
-  },
-  {
-    title: "Events comments",
-    icon: MessageCircle2Icon,
-    to: "/events-comments",
-    user_type: ["super_admin"],
-  },
-  { header: "Your organization", user_type: ["event_organizer"] },
-  {
-    title: "My Organization",
+    title: "My Products",
     icon: ComponentsIcon,
-    to: "/my-organization",
-    user_type: ["event_organizer"],
+    to: "/my-products",
+    user_type: ["farmer"],
   },
   {
-    title: "My events",
+    title: "My Orders",
     icon: CalendarEventIcon,
-    to: "/my-events",
-    user_type: ["event_organizer"],
+    to: "/my-orders",
+    user_type: ["farmer"],
   },
   {
-    title: "My team",
+    title: "My crops",
     icon: SitemapIcon,
-    to: "/my-team",
-    user_type: ["event_organizer"],
+    to: "/my-crops",
+    user_type: ["farmer"],
   },
-  { header: "Regular user", user_type: ["user"] },
   {
-    title: "My tickets",
+    title: "My livestock",
+    icon: SitemapIcon,
+    to: "/my-livestock",
+    user_type: ["farmer"],
+  },
+  { header: "Regular customer", user_type: ["user"] },
+  {
+    title: "Place an order",
     icon: ComponentsIcon,
     to: "/my-tickets",
     user_type: ["user"],
   },
-  {
-    title: "Past events",
-    icon: CalendarEventIcon,
-    to: "/past-events",
-    user_type: ["user"],
-  },
-  {
-    title: "Host an event",
-    icon: ConfettiIcon,
-    to: "/host-an-event",
-    user_type: ["user"],
-  },
-  // {
-  //   header: "Quick links",
-  //   user_type: ["user", "event_organizer"],
-  // },
-  // {
-  //   title: "Upcoming events",
-  //   icon: ConfettiIcon,
-  //   href: "https://reservo.co.ke/events",
-  //   user_type: ["user", "event_organizer"],
-  // },
-  // {
-  //   title: "All organizations",
-  //   icon: ClearAllIcon,
-  //   href: "https://reservo.co.ke/organizations",
-  //   user_type: ["user", "event_organizer"],
-  // },
-  // {
-  //   title: "Leave a comment",
-  //   icon: MessageDotsIcon,
-  //   href: "https://reservo.co.ke/reviews",
-  //   user_type: ["user", "event_organizer"],
-  // },
-  // {
-  //   title: "Terms of Use",
-  //   icon: LockSquareIcon,
-  //   href: "https://reservo.co.ke/terms",
-  //   user_type: ["user", "event_organizer"],
-  // },
-  // {
-  //   title: "Privacy Policy",
-  //   icon: BanIcon,
-  //   href: "https://reservo.co.ke/privacy",
-  //   user_type: ["user", "event_organizer"],
-  // },
 ]);
 
-const kiambufarmersItems = ref([
-  { header: "Reservo" },
-  {
-    title: "Kiambu Farmers Website",
-    icon: BrandWebflowIcon,
-    href: "https://kiambu-farmers.com",
-    user_type: ["user", "event_organizer"],
-  },
-  {
-    title: "Upcoming events",
-    icon: ConfettiIcon,
-    href: "https://kiambu-farmers.com/events",
-    user_type: ["user", "event_organizer"],
-  },
-  {
-    title: "All organizations",
-    icon: ClearAllIcon,
-    href: "https://kiambu-farmers.com/organizations",
-    user_type: ["user", "event_organizer"],
-  },
-  {
-    title: "Leave a comment",
-    icon: MessageDotsIcon,
-    href: "https://kiambu-farmers.com/reviews",
-    user_type: ["user", "event_organizer"],
-  },
-  {
-    title: "Terms of Use",
-    icon: LockSquareIcon,
-    href: "https://kiambu-farmers.com/terms",
-    user_type: ["user", "event_organizer"],
-  },
-  {
-    title: "Privacy Policy",
-    icon: BanIcon,
-    href: "https://kiambu-farmers.com/privacy",
-    user_type: ["user", "event_organizer"],
-  },
-]);
+// const kiambufarmersItems = ref([
+//   { header: "Reservo" },
+//   {
+//     title: "Kiambu Farmers Website",
+//     icon: BrandWebflowIcon,
+//     href: "https://kiambu-farmers.com",
+//     user_type: ["user", "farmer"],
+//   },
+//   {
+//     title: "Upcoming events",
+//     icon: ConfettiIcon,
+//     href: "https://kiambu-farmers.com/events",
+//     user_type: ["user", "farmer"],
+//   },
+//   {
+//     title: "All organizations",
+//     icon: ClearAllIcon,
+//     href: "https://kiambu-farmers.com/organizations",
+//     user_type: ["user", "farmer"],
+//   },
+//   {
+//     title: "Leave a comment",
+//     icon: MessageDotsIcon,
+//     href: "https://kiambu-farmers.com/reviews",
+//     user_type: ["user", "farmer"],
+//   },
+//   {
+//     title: "Terms of Use",
+//     icon: LockSquareIcon,
+//     href: "https://kiambu-farmers.com/terms",
+//     user_type: ["user", "farmer"],
+//   },
+//   {
+//     title: "Privacy Policy",
+//     icon: BanIcon,
+//     href: "https://kiambu-farmers.com/privacy",
+//     user_type: ["user", "farmer"],
+//   },
+// ]);
 
 const filteredSidebarItems = computed(() => {
   return userType.value
@@ -299,18 +198,9 @@ watchEffect(() => {
               </a>
             </template>
           </template>
-          <template v-for="item in kiambufarmersItems" :key="item.title">
+          <!-- <template v-for="item in kiambufarmersItems" :key="item.title">
             <NavigationSidebarNavGroup :item="item" v-if="item.header" />
             <template v-else>
-              <!-- <router-link
-                v-if="item.to"
-                :to="item.to"
-                :class="{ 'sidebar-link': true, leftPadding: !item.to }"
-                style="text-decoration: none"
-                class="text-textSecondary"
-              >
-                <NavigationSidebarNavItem :item="item" />
-              </router-link> -->
               <a
                 :href="item.href"
                 target="_blank"
@@ -322,7 +212,7 @@ watchEffect(() => {
                 <NavigationSidebarNavItem :item="item" />
               </a>
             </template>
-          </template>
+          </template> -->
         </v-list>
       </perfect-scrollbar>
     </div>

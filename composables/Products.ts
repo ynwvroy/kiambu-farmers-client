@@ -1,17 +1,17 @@
-export function useTasks() {
+export function useProducts() {
   const router = useRouter();
 
-  const tasks = ref<IGetAllTasks>();
+  const products = ref<IGetAllProducts>();
 
-  const isEditingTasks = useState<boolean>("is-editing-task", () => false);
+  const isEditingProducts = useState<boolean>("is-editing-product", () => false);
 
   /**
    * ---------------------------------------------------
-   * Tasks FormState
+   * Products FormState
    * ---------------------------------------------------
    *
    */
-  const tasksFormState = useState<ITasksFormState>("tasks", () => ({
+  const productsFormState = useState<IProductsFormState>("products", () => ({
     id: 0,
     name: "",
     slug: "",
@@ -32,12 +32,12 @@ export function useTasks() {
 
   /**
    * ---------------------------------------------------
-   * Reset Tasks FormState
+   * Reset Products FormState
    * ---------------------------------------------------
    *
    */
-  const resetTasksFormState = () => {
-    tasksFormState.value = {
+  const resetProductsFormState = () => {
+    productsFormState.value = {
       id: 0,
       name: "",
       slug: "",
@@ -59,168 +59,168 @@ export function useTasks() {
 
   /**
    * ---------------------------------------------------
-   * Get all tasks
+   * Get all products
    * ---------------------------------------------------
    *
    */
-  const getAllTasks = async () => {
+  const getAllProducts = async () => {
     try {
-      const response = await useApi<IGetAllTasks>("/tasks", {
+      const response = await useApi<IGetAllProducts>("/products", {
         method: "GET",
       });
 
-      tasksFormState.value = response?.data
+      productsFormState.value = response?.data
       return response?.data;
     } catch (error) {
-      console.error("Error getAllTasks::: ", error);
+      console.error("Error getAllProducts::: ", error);
     }
   };
 
   /**
    * ---------------------------------------------------
-   * Create new task
+   * Create new product
    * ---------------------------------------------------
    *
    */
-  const createTask = async () => {
+  const createProduct = async () => {
     try {
-      const response = await useApi<ICreateTasksResponse>("/tasks", {
+      const response = await useApi<ICreateProductsResponse>("/products", {
         method: "POST",
-        data: tasksFormState.value satisfies ICreateTasksRequest,
+        data: productsFormState.value satisfies ICreateProductsRequest,
       });
       if (response?.success) {
         notification["success"]({
-          description: "Task created successfully.",
+          description: "Product created successfully.",
           message: "Success",
           placement: "bottomRight",
           duration: 8,
         });
 
-        router.push("/tasks");
-        resetTasksFormState();
+        router.push("/products");
+        resetProductsFormState();
         return response?.data;
       } else {
         notification["error"]({
           description:
-            "Could not create the task. Please try again.",
+            "Could not create the product. Please try again.",
           message: "Failed",
           placement: "bottomRight",
           duration: 8,
         });
       }
     } catch (error) {
-      console.error("Error createTask::: ", error);
+      console.error("Error createProduct::: ", error);
     }
   };
 
   /**
    * ---------------------------------------------------
-   * Get single tasks
+   * Get single products
    * ---------------------------------------------------
    *
    */
-  const getSingleTask = async (task_id: string | number) => {
+  const getSingleProduct = async (product_id: string | number) => {
     try {
-      const response = await useApi<IGetSingleTasks>(`/tasks/${task_id}`, {
+      const response = await useApi<IGetSingleProducts>(`/products/${product_id}`, {
         method: "GET",
       });
 
       if (response?.success) {
-        tasksFormState.value = response?.data;
+        productsFormState.value = response?.data;
         return response?.data;
       }
     } catch (error) {
-      console.error("Error getSingleTask::: ", error);
+      console.error("Error getSingleProduct::: ", error);
     }
   };
 
   /**
    * ---------------------------------------------------
-   * Update single tasks
+   * Update single products
    * ---------------------------------------------------
    *
    */
-  const updateSingleTask = async (task_id: number | undefined) => {
+  const updateSingleProduct = async (product_id: number | undefined) => {
     try {
-      const response = await useApi<IUpdateTasksResponse>(`/tasks/${task_id}`, {
+      const response = await useApi<IUpdateProductsResponse>(`/products/${product_id}`, {
         method: "PUT",
-        data: tasksFormState.value satisfies IUpdateTasksRequest,
+        data: productsFormState.value satisfies IUpdateProductsRequest,
       });
       if (response?.success) {
         notification["success"]({
-          description: "Task updated successfully.",
+          description: "Product updated successfully.",
           message: "Success",
           placement: "bottomRight",
           duration: 8,
         });
 
-        router.push("/tasks");
-        resetTasksFormState();
-        isEditingTasks.value = false;
+        router.push("/products");
+        resetProductsFormState();
+        isEditingProducts.value = false;
         return response?.data;
       } else {
         notification["error"]({
           description:
-            "Could not update the task. Please try again.",
+            "Could not update the product. Please try again.",
           message: "Failed",
           placement: "bottomRight",
           duration: 8,
         });
       }
     } catch (error) {
-      console.error("Error updateSingleTask::: ", error);
+      console.error("Error updateSingleProduct::: ", error);
     }
   };
 
   /**
    * ---------------------------------------------------
-   * Delete single tasks
+   * Delete single products
    * ---------------------------------------------------
    *
    */
-  const deleteSingleTask = async (task_id: number) => {
+  const deleteSingleProduct = async (product_id: number) => {
     try {
-      const deleteTaskResponse = await useApi<IDeleteTasksResponse>(`/tasks/${task_id}`, {
+      const deleteProductResponse = await useApi<IDeleteProductsResponse>(`/products/${product_id}`, {
         method: "DELETE",
       });
-      if (deleteTaskResponse?.success === true) {
+      if (deleteProductResponse?.success === true) {
         notification["success"]({
-          description: "Task deleted successfully.",
+          description: "Product deleted successfully.",
           message: "Success",
           placement: "bottomRight",
           duration: 8,
         });
 
-        return deleteTaskResponse.data?.data;
-      } else if (deleteTaskResponse.data?.code === "E_ROW_NOT_FOUND") {
+        return deleteProductResponse.data?.data;
+      } else if (deleteProductResponse.data?.code === "E_ROW_NOT_FOUND") {
         notification["warning"]({
-          description: deleteTaskResponse.data?.message,
+          description: deleteProductResponse.data?.message,
           message: "Failed",
           placement: "bottomRight",
           duration: 8,
         });
-      } else if (deleteTaskResponse.data?.code === "ER_ROW_IS_REFERENCED_2") {
+      } else if (deleteProductResponse.data?.code === "ER_ROW_IS_REFERENCED_2") {
         notification["warning"]({
-          description: deleteTaskResponse.data?.message,
+          description: deleteProductResponse.data?.message,
           message: "Failed",
           placement: "bottomRight",
           duration: 8,
         });
       }
     } catch (error) {
-      console.error("Error deleteSingleTask::: ", error);
+      console.error("Error deleteSingleProduct::: ", error);
     }
   };
 
   return {
-    tasks,
-    tasksFormState,
-    isEditingTasks,
-    getAllTasks,
-    createTask,
-    getSingleTask,
-    updateSingleTask,
-    deleteSingleTask,
-    resetTasksFormState
+    products,
+    productsFormState,
+    isEditingProducts,
+    getAllProducts,
+    createProduct,
+    getSingleProduct,
+    updateSingleProduct,
+    deleteSingleProduct,
+    resetProductsFormState
   };
 }

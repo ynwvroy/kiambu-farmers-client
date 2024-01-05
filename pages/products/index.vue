@@ -4,32 +4,32 @@ import type { TableColumnsType } from "ant-design-vue";
 import { TrashIcon } from "vue-tabler-icons";
 
 useHead({
-  title: "Teams",
+  title: "Products",
   meta: [
     {
       name: "description",
       content:
-        "Explore and discover different teams. Connect with like-minded groups and entities.",
+        "Manage and track your products efficiently. Stay organized and achieve your goals with our product management system.",
     },
   ],
 });
 
+const {
+  isEditingProducts,
+  getSingleProduct,
+  resetProductsFormState,
+  productsFormState,
+  deleteSingleProduct,
+  getAllProducts,
+} = useProducts();
+
 const router = useRouter();
 
-const {
-  isEditingTeams,
-  resetTeamsFormState,
-  getSingleTeam,
-  deleteSingleTeam,
-  teamsFormState,
-  getAllTeams,
-} = useTeams();
-
-const response = await useApi<IGetAllTeams>("/teams", {
+const response = await useApi<IGetAllProducts>("/products", {
   method: "GET",
 });
 
-teamsFormState.value = response?.data;
+productsFormState.value = response?.data;
 
 const columns = ref<TableColumnsType>([
   {
@@ -40,6 +40,13 @@ const columns = ref<TableColumnsType>([
     width: 50,
   },
   {
+    title: "Image",
+    dataIndex: "image_url",
+    key: "image_url",
+    resizable: true,
+    width: 60,
+  },
+  {
     title: "Name",
     dataIndex: "name",
     key: "name",
@@ -47,33 +54,40 @@ const columns = ref<TableColumnsType>([
     width: 120,
   },
   {
-    title: "Organization",
-    dataIndex: "organization_id",
-    key: "organization_id",
-    resizable: true,
-    width: 150,
-  },
-  {
-    title: "Event",
-    dataIndex: "event_id",
-    key: "event_id",
-    resizable: true,
-    width: 150,
-  },
-  {
     title: "Description",
     dataIndex: "description",
     key: "description",
     resizable: true,
     ellipsis: true,
-    width: 200,
+    width: 150,
   },
   {
-    title: "Date created",
-    dataIndex: "created_at",
-    key: "created_at",
+    title: "Seller",
+    dataIndex: "seller_id",
+    key: "seller_id",
     resizable: true,
-    width: 100,
+    width: 180,
+  },
+  {
+    title: "Quantity",
+    dataIndex: "stock_quantity",
+    key: "stock_quantity",
+    resizable: true,
+    width: 60,
+  },
+  {
+    title: "Units sold",
+    dataIndex: "units_sold",
+    key: "units_sold",
+    resizable: true,
+    width: 60,
+  },
+  {
+    title: "Price",
+    dataIndex: "price",
+    key: "price",
+    resizable: true,
+    width: 60,
   },
   {
     title: "Actions",
@@ -87,19 +101,19 @@ function handleResizeColumn(w: any, col: any) {
   col.width = w;
 }
 
-const editTeam = async (team_id: string) => {
-  isEditingTeams.value = true;
-  const response = await getSingleTeam(team_id);
-  router.push(`/teams/${response?.slug}`);
+const editProducts = async (product_id: string) => {
+  isEditingProducts.value = true;
+  const response = await getSingleProduct(product_id);
+  router.push(`/products/${response?.id}`);
 };
 
-const openTeamsForm = () => {
-  isEditingTeams.value = false;
-  resetTeamsFormState();
-  router.push("/teams/new-team");
+const openProductsForm = () => {
+  isEditingProducts.value = false;
+  resetProductsFormState();
+  router.push("/products/new-product");
 };
 
-const showDeleteConfirm = async (team_id: number) => {
+const showDeleteConfirm = async (product_id: number) => {
   Modal.confirm({
     title: "Delete product",
     icon: TrashIcon,
@@ -109,8 +123,8 @@ const showDeleteConfirm = async (team_id: number) => {
     okType: "danger",
     cancelText: "No",
     async onOk() {
-      await deleteSingleTeam(team_id);
-      await getAllTeams();
+      await deleteSingleProduct(product_id);
+      await getAllProducts();
     },
     onCancel() {
       return;
@@ -124,71 +138,61 @@ const showDeleteConfirm = async (team_id: number) => {
     <!-- ---------------------------------------------- -->
     <!--Title -->
     <!-- ---------------------------------------------- -->
-    <h1 class="text-h1 py-4">Teams</h1>
+    <h1 class="text-h1 py-4">Products</h1>
 
     <!-- ---------------------------------------------- -->
     <!--Analytics -->
     <!-- ---------------------------------------------- -->
     <v-row class="py-12">
       <v-col cols="12" md="4" xs="12">
-        <ModulesTeamsLeastPopular />
+        <ModulesProductsLeastPopular />
       </v-col>
       <v-col cols="12" md="4" xs="12">
-        <ModulesTeamsMostPopular />
+        <ModulesProductsMostPopular />
       </v-col>
       <v-col cols="12" md="4" xs="12">
-        <ModulesTeamsTotal />
+        <ModulesProductsTotal />
       </v-col>
     </v-row>
 
     <!-- ---------------------------------------------- -->
-    <!--Teams table -->
+    <!--Products table -->
     <!-- ---------------------------------------------- -->
     <v-row>
       <v-col cols="12" md="12">
         <div class="py-7 pt-1">
           <div class="px-3 pb-5">
-            <v-btn color="info" @click="openTeamsForm()">
+            <v-btn color="info" @click="openProductsForm()">
               <div class="d-flex align-center gap-2">
                 <PlusSquareOutlined :size="24" />
-                Create Team
+                Create Product
               </div>
             </v-btn>
           </div>
           <div>
             <a-table
-              :dataSource="teamsFormState"
+              :dataSource="productsFormState"
               :columns="columns"
               @resizeColumn="handleResizeColumn"
               :scroll="{ x: 2000 }"
               :expand-column-width="1000"
             >
               <template #bodyCell="{ column, record }">
-                <!-- Date -->
-                <template v-if="column.key === 'created_at'">
-                  <span>
-                    {{ record.created_at.split("T")[0] }}
+                <!-- Product image -->
+                <template v-if="column.key === 'image_url'">
+                  <v-img
+                    :src="record.image_url"
+                    style="height: 2rem; width: 2rem"
+                  />
+                </template>
+
+                <!-- Seller relation -->
+                <template v-if="column.key === 'seller_id'">
+                  <span v-if="record.seller_id && record.seller_id > 0">
+                    ({{ record.seller.id }}) {{ record.seller.full_name }}
                   </span>
                 </template>
 
-                <!-- Organization relation -->
-                <template v-if="column.key === 'organization_id'">
-                  <span
-                    v-if="record.organization_id && record.organization_id > 0"
-                  >
-                    ({{ record.organization.id }})
-                    {{ record?.organization?.name }}
-                  </span>
-                  <span v-else> - </span>
-                </template>
-
-                <!-- Event relation -->
-                <template v-if="column.key === 'event_id'">
-                  <span v-if="record.event_id && record.event_id > 0">
-                    ({{ record.event.id }}) {{ record?.event?.name }}
-                  </span>
-                  <span v-else> - </span>
-                </template>
 
                 <!-- Actions -->
                 <template v-if="column.key === 'action'">
@@ -203,7 +207,7 @@ const showDeleteConfirm = async (team_id: number) => {
                     size="18"
                     color="blue"
                     style="cursor: pointer"
-                    @click="editTeam(record.id)"
+                    @click="editProducts(record.id)"
                   />
                 </template>
               </template>

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-const { tasksFormState, isEditingTasks } = useTasks();
+const { productsFormState, isEditingProducts } = useProducts();
 
 useHead({
-  title: "Single Task",
+  title: "Single Product",
   meta: [
     {
       name: "description",
@@ -17,10 +17,10 @@ useHead({
   <v-row>
     <v-col cols="12" md="12">
       <BaseCard
-        :title="isEditingTasks === true ? 'Reviewing task' : 'New task'"
+        :title="isEditingProducts === true ? 'Reviewing product' : 'New product'"
       >
         <div class="pa-6">
-          <FormsTasksForm />
+          <FormsProductsForm />
         </div>
       </BaseCard>
     </v-col>
