@@ -8,9 +8,11 @@ declare interface IProductsFormState {
   price: number;
   created_by: number | null;
   seller_id: number | null;
+  category_id: number | null;
   created_at?: Date | null;
   updated_at?: Date | null;
   seller?: IUserFormState | null;
+  category?: IUserFormState | null;
 }
 
 declare interface IGetAllProducts {

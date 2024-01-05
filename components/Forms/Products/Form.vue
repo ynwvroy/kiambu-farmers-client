@@ -1,6 +1,10 @@
 <script setup lang="ts">
-const { isEditingProducts, productsFormState, updateSingleProduct, createProduct } =
-  useProducts();
+const {
+  isEditingProducts,
+  productsFormState,
+  updateSingleProduct,
+  createProduct,
+} = useProducts();
 
 const saveProduct = async () => {
   if (isEditingProducts.value) {
@@ -9,7 +13,6 @@ const saveProduct = async () => {
     await createProduct();
   }
 };
-
 </script>
 
 <template>
@@ -35,7 +38,7 @@ const saveProduct = async () => {
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12">
+      <v-col cols="6">
         <v-label class="font-weight-bold mb-1">Description</v-label>
         <v-textarea
           v-model="productsFormState.description"
@@ -43,6 +46,15 @@ const saveProduct = async () => {
           hide-details
           color="primary"
         ></v-textarea>
+      </v-col>
+      <v-col cols="12" md="6" xs="12">
+        <v-label class="font-weight-bold mb-1">Product Category</v-label>
+        <v-text-field
+          v-model="productsFormState.category_id"
+          variant="outlined"
+          hide-details
+          color="primary"
+        ></v-text-field>
       </v-col>
     </v-row>
     <v-row>

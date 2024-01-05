@@ -62,6 +62,13 @@ const columns = ref<TableColumnsType>([
     width: 150,
   },
   {
+    title: "Category",
+    dataIndex: "category_id",
+    key: "category_id",
+    resizable: true,
+    width: 60,
+  },
+  {
     title: "Seller",
     dataIndex: "seller_id",
     key: "seller_id",
@@ -190,6 +197,13 @@ const showDeleteConfirm = async (product_id: number) => {
                 <template v-if="column.key === 'seller_id'">
                   <span v-if="record.seller_id && record.seller_id > 0">
                     ({{ record.seller.id }}) {{ record.seller.full_name }}
+                  </span>
+                </template>
+
+                <!-- Category relation -->
+                <template v-if="column.key === 'category_id'">
+                  <span v-if="record.category_id && record.category_id > 0">
+                    ({{ record.category.id }}) {{ record.category.name }}
                   </span>
                 </template>
 

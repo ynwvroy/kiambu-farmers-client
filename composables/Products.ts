@@ -3,7 +3,10 @@ export function useProducts() {
 
   const products = ref<IGetAllProducts>();
 
-  const isEditingProducts = useState<boolean>("is-editing-product", () => false);
+  const isEditingProducts = useState<boolean>(
+    "is-editing-product",
+    () => false
+  );
 
   /**
    * ---------------------------------------------------
@@ -14,20 +17,15 @@ export function useProducts() {
   const productsFormState = useState<IProductsFormState>("products", () => ({
     id: 0,
     name: "",
-    slug: "",
     description: "",
-    priority: "",
-    label: "",
-    status: "",
+    stock_quantity: 0,
+    units_sold: 0,
+    image_url: "",
+    price: 0,
     created_by: null,
-    team_id: null,
-    assignee_id: null,
-    comments: "",
+    seller_id: null,
+    category_id: null,
     created_at: null,
-    updated_at: null,
-    team: null,
-    assignee: null,
-    creator: null,
   }));
 
   /**
@@ -40,20 +38,15 @@ export function useProducts() {
     productsFormState.value = {
       id: 0,
       name: "",
-      slug: "",
       description: "",
-      priority: "",
-      label: "",
-      status: "",
+      stock_quantity: 0,
+      units_sold: 0,
+      image_url: "",
+      price: 0,
       created_by: null,
-      team_id: null,
-      assignee_id: null,
-      comments: "",
+      seller_id: null,
+      category_id: null,
       created_at: null,
-      updated_at: null,
-      team: null,
-      assignee: null,
-      creator: null,
     };
   };
 
@@ -69,7 +62,7 @@ export function useProducts() {
         method: "GET",
       });
 
-      productsFormState.value = response?.data
+      productsFormState.value = response?.data;
       return response?.data;
     } catch (error) {
       console.error("Error getAllProducts::: ", error);
@@ -101,8 +94,7 @@ export function useProducts() {
         return response?.data;
       } else {
         notification["error"]({
-          description:
-            "Could not create the product. Please try again.",
+          description: "Could not create the product. Please try again.",
           message: "Failed",
           placement: "bottomRight",
           duration: 8,
@@ -121,9 +113,12 @@ export function useProducts() {
    */
   const getSingleProduct = async (product_id: string | number) => {
     try {
-      const response = await useApi<IGetSingleProducts>(`/products/${product_id}`, {
-        method: "GET",
-      });
+      const response = await useApi<IGetSingleProducts>(
+        `/products/${product_id}`,
+        {
+          method: "GET",
+        }
+      );
 
       if (response?.success) {
         productsFormState.value = response?.data;
@@ -142,10 +137,13 @@ export function useProducts() {
    */
   const updateSingleProduct = async (product_id: number | undefined) => {
     try {
-      const response = await useApi<IUpdateProductsResponse>(`/products/${product_id}`, {
-        method: "PUT",
-        data: productsFormState.value satisfies IUpdateProductsRequest,
-      });
+      const response = await useApi<IUpdateProductsResponse>(
+        `/products/${product_id}`,
+        {
+          method: "PUT",
+          data: productsFormState.value satisfies IUpdateProductsRequest,
+        }
+      );
       if (response?.success) {
         notification["success"]({
           description: "Product updated successfully.",
@@ -160,8 +158,7 @@ export function useProducts() {
         return response?.data;
       } else {
         notification["error"]({
-          description:
-            "Could not update the product. Please try again.",
+          description: "Could not update the product. Please try again.",
           message: "Failed",
           placement: "bottomRight",
           duration: 8,
@@ -180,9 +177,12 @@ export function useProducts() {
    */
   const deleteSingleProduct = async (product_id: number) => {
     try {
-      const deleteProductResponse = await useApi<IDeleteProductsResponse>(`/products/${product_id}`, {
-        method: "DELETE",
-      });
+      const deleteProductResponse = await useApi<IDeleteProductsResponse>(
+        `/products/${product_id}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (deleteProductResponse?.success === true) {
         notification["success"]({
           description: "Product deleted successfully.",
@@ -199,7 +199,9 @@ export function useProducts() {
           placement: "bottomRight",
           duration: 8,
         });
-      } else if (deleteProductResponse.data?.code === "ER_ROW_IS_REFERENCED_2") {
+      } else if (
+        deleteProductResponse.data?.code === "ER_ROW_IS_REFERENCED_2"
+      ) {
         notification["warning"]({
           description: deleteProductResponse.data?.message,
           message: "Failed",
@@ -221,6 +223,6 @@ export function useProducts() {
     getSingleProduct,
     updateSingleProduct,
     deleteSingleProduct,
-    resetProductsFormState
+    resetProductsFormState,
   };
 }
