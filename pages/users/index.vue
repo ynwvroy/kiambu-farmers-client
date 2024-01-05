@@ -208,7 +208,7 @@ const showDeleteConfirm = async (user_id: number) => {
                   <span v-if="record.user_type === 'user'">
                     <a-tag color="red"> User </a-tag>
                   </span>
-                  <span v-else-if="record.user_type === 'event_organizer'">
+                  <span v-else-if="record.user_type === 'farmer'">
                     <a-tag color="blue">Organizer</a-tag>
                   </span>
                   <span v-else-if="record.user_type === 'super_admin'">
