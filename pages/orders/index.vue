@@ -5,13 +5,6 @@ import { TrashIcon } from "vue-tabler-icons";
 
 useHead({
   title: "Orders",
-  meta: [
-    {
-      name: "description",
-      content:
-        "Explore and discover different orders. Connect with like-minded groups and entities.",
-    },
-  ],
 });
 
 const router = useRouter();

@@ -1,13 +1,6 @@
 <script setup lang="ts">
 useHead({
-  title: "Create New Organization",
-  meta: [
-    {
-      name: "description",
-      content:
-        "Create and set up a new organization. Share your organization's details and mission.",
-    },
-  ],
+  title: "Single Organization",
 });
 
 const {

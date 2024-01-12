@@ -6,10 +6,6 @@ definePageMeta({
 
 useHead({
   title: "Forgot Password",
-  meta: [
-    { name: "description", content: "Reset your password. Receive instructions on how to recover access to your account." },
-
-  ],
 });
 
 </script>

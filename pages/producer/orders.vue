@@ -4,14 +4,7 @@ import type { TableColumnsType } from "ant-design-vue";
 import { TrashIcon } from "vue-tabler-icons";
 
 useHead({
-  title: "Orders",
-  meta: [
-    {
-      name: "description",
-      content:
-        "Explore and discover different orders. Connect with like-minded groups and entities.",
-    },
-  ],
+  title: "Producer Orders",
 });
 
 const router = useRouter();

@@ -1,10 +1,6 @@
 <script setup lang="ts">
 useHead({
   title: "Profile",
-  meta: [
-    { name: "description", content: "View and manage your user profile. Customize your settings and personal information." },
-
-  ],
 });
 </script>
 

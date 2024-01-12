@@ -1,13 +1,6 @@
 <script setup lang="ts">
 useHead({
   title: "My Organization",
-  meta: [
-    {
-      name: "description",
-      content:
-        "Manage and customize your organization's details. Stay in control of your organization's presence.",
-    },
-  ],
 });
 
 const { getSingleOrganization, organizationFormState } = useOrganization();

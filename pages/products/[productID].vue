@@ -3,13 +3,6 @@ const { productsFormState, isEditingProducts } = useProducts();
 
 useHead({
   title: "Single Product",
-  meta: [
-    {
-      name: "description",
-      content:
-        "View and engage with comments on various organizations. Share your thoughts and experiences.",
-    },
-  ],
 });
 </script>
 

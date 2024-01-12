@@ -6,10 +6,6 @@ definePageMeta({
 
 useHead({
   title: "Register",
-  meta: [
-    { name: "description", content: "Create a new account. Register and join our community to access exclusive features and content." },
-
-  ],
 });
 </script>
 

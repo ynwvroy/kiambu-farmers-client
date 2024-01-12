@@ -2,10 +2,6 @@
 
 useHead({
   title: "Home",
-  meta: [
-    { name: "description", content: "Welcome to our platform. Explore and engage with a variety of features and content." },
-
-  ],
 });
 
 </script>

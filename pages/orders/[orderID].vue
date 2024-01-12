@@ -3,13 +3,6 @@ const { ordersFormState, isEditingOrders } = useOrders();
 
 useHead({
   title: "Single Order",
-  meta: [
-    {
-      name: "description",
-      content:
-        "View and engage with comments on various organizations. Share your thoughts and experiences.",
-    },
-  ],
 });
 </script>
 

@@ -4,14 +4,7 @@ import type { TableColumnsType } from "ant-design-vue";
 import { TrashIcon } from "vue-tabler-icons";
 
 useHead({
-  title: "Sales",
-  meta: [
-    {
-      name: "description",
-      content:
-        "Manage and track your sales efficiently. Stay organized and achieve your goals with our sale management system.",
-    },
-  ],
+  title: "Producer Sales",
 });
 
 const {

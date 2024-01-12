@@ -3,13 +3,6 @@ const { salesFormState, isEditingSales } = useSales();
 
 useHead({
   title: "Single Sale",
-  meta: [
-    {
-      name: "description",
-      content:
-        "View and engage with comments on various organizations. Share your thoughts and experiences.",
-    },
-  ],
 });
 </script>
 

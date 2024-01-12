@@ -5,13 +5,6 @@ import { TrashIcon } from "vue-tabler-icons";
 
 useHead({
   title: "Products",
-  meta: [
-    {
-      name: "description",
-      content:
-        "Manage and track your products efficiently. Stay organized and achieve your goals with our product management system.",
-    },
-  ],
 });
 
 const {

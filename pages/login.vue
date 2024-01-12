@@ -6,10 +6,6 @@ definePageMeta({
 
 useHead({
   title: "Login",
-  meta: [
-    { name: "description", content: "Welcome to our application. Discover the various pages and features available." },
-
-  ],
 });
 </script>
 <template>
