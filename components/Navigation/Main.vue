@@ -49,6 +49,12 @@ const sidebarItems = ref([
     user_type: ["super_admin"],
   },
   {
+    title: "Sales",
+    icon: FileDescriptionIcon,
+    to: "/sales",
+    user_type: ["super_admin"],
+  },
+  {
     title: "Product Categories",
     icon: MailFastIcon,
     to: "/product-categories",
