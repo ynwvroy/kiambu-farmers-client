@@ -20,3 +20,37 @@ useHead({
       </div>
   </div>
 </template>
+
+<!-- crop management fields
+
+id
+farmer_id
+crop name
+variety
+planting_date
+harvesting_date
+yeild_quantity
+input_expenses
+revenue_earned
+market_price_per_unit
+units_sold
+units_remaining
+spoilt_units
+disease_management_notes
+harvest_quality_rating
+pest_management_notes
+average_weather_conditions
+
+
+livestock management
+
+id
+farmer_id
+name
+species
+breed
+birth_date
+purchase_date
+purchase_price
+offspring_count
+reproduction_status -->
