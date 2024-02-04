@@ -1,34 +1,22 @@
 <script setup lang="ts">
 import {
   LayoutDashboardIcon,
-  UserCircleIcon,
-  DeviceAnalyticsIcon,
   FileDescriptionIcon,
-  MailFastIcon,
-  UsersIcon,
-  QuestionMarkIcon,
-  AffiliateIcon,
-  Category2Icon,
   ComponentsIcon,
-  CalendarEventIcon,
-  SitemapIcon,
-  LogoutIcon,
-  MessageIcon,
-  MessageCircle2Icon,
-  ConfettiIcon,
-  TicketIcon,
-  GiftIcon,
+  CashBanknoteIcon,
   Menu2Icon,
-  LockSquareIcon,
-  BanIcon,
-  ClearAllIcon,
-  MessageDotsIcon,
-  BrandWebflowIcon,
-  ScubaMaskIcon,
-  LayoutKanbanIcon,
-  BrandWhatsappIcon,
-  BrandLinktreeIcon
+  CloudIcon,
 } from "vue-tabler-icons";
+
+import {
+  IconShoppingCart,
+  IconCurrencyEuro,
+  IconCurrencyEuroOff,
+  IconChartPie2,
+  IconTruckDelivery,
+  IconAlignBoxLeftMiddle,
+  IconCoins
+} from "@tabler/icons-vue";
 
 const sDrawer = ref(true);
 
@@ -49,90 +37,74 @@ const sidebarItems = ref([
     user_type: ["super_admin"],
   },
   {
-    title: "Sales",
-    icon: FileDescriptionIcon,
+    title: "Finance Analysis",
+    icon: IconCoins,
     to: "/sales",
     user_type: ["super_admin"],
   },
   {
     title: "Product Categories",
-    icon: MailFastIcon,
+    icon: IconAlignBoxLeftMiddle,
     to: "/product-categories",
     user_type: ["super_admin"],
   },
   {
     title: "Orders",
-    icon: ConfettiIcon,
+    icon: IconTruckDelivery,
     to: "/orders",
     user_type: ["super_admin"],
   },
   { header: "Farmer Dashboard", user_type: ["farmer"] },
   {
-    title: "Sales",
-    icon: SitemapIcon,
-    to: "/producer/sales",
+    title: "Products Overview",
+    icon: IconChartPie2,
+    to: "producer/products-overview",
     user_type: ["farmer"],
   },
   {
-    title: "Products",
-    icon: ComponentsIcon,
-    to: "/producer/products",
+    title: "My Products",
+    icon: FileDescriptionIcon,
+    to: "producer/products",
     user_type: ["farmer"],
   },
   {
     title: "Orders",
-    icon: CalendarEventIcon,
-    to: "/producer/orders",
+    icon: IconShoppingCart,
+    to: "producer/orders",
+    user_type: ["farmer"],
+  },
+  {
+    title: "Finance Overview",
+    icon: CashBanknoteIcon,
+    to: "/producer/finance-overview",
+    user_type: ["farmer"],
+  },
+  {
+    title: "Income",
+    icon: IconCurrencyEuro,
+    to: "/producer/income",
+    user_type: ["farmer"],
+  },
+  {
+    title: "Expenses",
+    icon: IconCurrencyEuroOff,
+    to: "/producer/expenses",
+    user_type: ["farmer"],
+  },
+  {
+    title: "Weather Forecast",
+    icon: CloudIcon,
+    to: "/producer/forecast",
     user_type: ["farmer"],
   },
   { header: "Regular customer", user_type: ["user"] },
   {
-    title: "Place an order",
+    title: "View orders",
     icon: ComponentsIcon,
     to: "/my-tickets",
     user_type: ["user"],
   },
 ]);
-
-// const kiambufarmersItems = ref([
-//   { header: "Reservo" },
-//   {
-//     title: "Kiambu Farmers Website",
-//     icon: BrandWebflowIcon,
-//     href: "https://kiambu-farmers.com",
-//     user_type: ["user", "farmer"],
-//   },
-//   {
-//     title: "Upcoming events",
-//     icon: ConfettiIcon,
-//     href: "https://kiambu-farmers.com/events",
-//     user_type: ["user", "farmer"],
-//   },
-//   {
-//     title: "All organizations",
-//     icon: ClearAllIcon,
-//     href: "https://kiambu-farmers.com/organizations",
-//     user_type: ["user", "farmer"],
-//   },
-//   {
-//     title: "Leave a comment",
-//     icon: MessageDotsIcon,
-//     href: "https://kiambu-farmers.com/reviews",
-//     user_type: ["user", "farmer"],
-//   },
-//   {
-//     title: "Terms of Use",
-//     icon: LockSquareIcon,
-//     href: "https://kiambu-farmers.com/terms",
-//     user_type: ["user", "farmer"],
-//   },
-//   {
-//     title: "Privacy Policy",
-//     icon: BanIcon,
-//     href: "https://kiambu-farmers.com/privacy",
-//     user_type: ["user", "farmer"],
-//   },
-// ]);
 
 const filteredSidebarItems = computed(() => {
   return userType.value
@@ -198,21 +170,6 @@ watchEffect(() => {
               </a>
             </template>
           </template>
-          <!-- <template v-for="item in kiambufarmersItems" :key="item.title">
-            <NavigationSidebarNavGroup :item="item" v-if="item.header" />
-            <template v-else>
-              <a
-                :href="item.href"
-                target="_blank"
-                rel="noopener noreferrer"
-                :class="{ 'sidebar-link': true, leftPadding: !item.to }"
-                style="text-decoration: none"
-                class="text-textSecondary"
-              >
-                <NavigationSidebarNavItem :item="item" />
-              </a>
-            </template>
-          </template> -->
         </v-list>
       </perfect-scrollbar>
     </div>
