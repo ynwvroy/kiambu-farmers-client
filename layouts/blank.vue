@@ -1,11 +1,9 @@
+// ===============================|| Blank Layout ||=============================== //
 <script setup lang="ts">
+import { RouterView } from "vue-router";
 </script>
-
 <template>
   <v-app>
-    <v-main>
-
-      <slot />
-    </v-main>
+    <RouterView />
   </v-app>
 </template>

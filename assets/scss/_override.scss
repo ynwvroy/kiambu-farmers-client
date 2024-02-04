@@ -1,0 +1,36 @@
+html {
+  .bg-success {
+    color: white !important;
+  }
+
+  .bg-primary {
+    color: $white !important;
+  }
+
+  .bg-secondary {
+    color: $white !important;
+  }
+
+  .bg-warning {
+    color: $white !important;
+  }
+}
+.border,
+.v-divider {
+  border-color: rgba(var(--v-border-color), 1) !important;
+}
+.ant-modal-content,
+.ant-notification-notice-content,
+.ant-table-cell {
+  font-size: 15px !important;
+  line-height: 25px !important;
+  font-weight: 500 !important;
+  font-family: "Plus Jakarta Sans" !important;
+}
+
+.ant-spin-container {
+    font-size: 15px !important;
+    line-height: 25px !important;
+    font-weight: 500 !important;
+    font-family: "Plus Jakarta Sans" !important;
+}

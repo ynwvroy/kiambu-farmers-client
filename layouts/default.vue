@@ -1,51 +1,25 @@
-<script lang="ts" setup>
-const collapsed = ref<boolean>(false);
+<script setup lang="ts">
+import { RouterView } from "vue-router";
+const title = ref("Kiambu Farmers");
+useHead({
+  meta: [{ content: title }],
+  titleTemplate: (titleChunk) => {
+    return titleChunk ? `${titleChunk}` : "Kiambu Farmers";
+  },
+});
 </script>
 
 <template>
-  <a-layout style="min-height: 100vh">
-    <!-- ---------------------------------------------- -->
-    <!-- Sidebar -->
-    <!-- ---------------------------------------------- -->
-    <a-layout-sider v-model:collapsed="collapsed" collapsible>
-      <BaseSideBar />
-    </a-layout-sider>
-    <a-layout>
-      <!-- ---------------------------------------------- -->
-      <!-- Header -->
-      <!-- ---------------------------------------------- -->
-      <a-layout-header style="background: #fff; padding: 0" />
-
-      <!-- ---------------------------------------------- -->
-      <!-- Content -->
-      <!-- ---------------------------------------------- -->
-      <a-layout-content style="margin: 0 16px">
-        <div>
-          <slot />
-        </div>
-      </a-layout-content>
-
-      <!-- ---------------------------------------------- -->
-      <!-- Footer -->
-      <!-- ---------------------------------------------- -->
-      <!-- <a-layout-footer style="text-align: center">
-        Footer content here
-      </a-layout-footer> -->
-    </a-layout>
-  </a-layout>
+  <v-locale-provider>
+    <v-app>
+      <NavigationMain />
+      <v-main>
+        <v-container fluid class="page-wrapper">
+          <div class="maxWidth">
+            <RouterView />
+          </div>
+        </v-container>
+      </v-main>
+    </v-app>
+  </v-locale-provider>
 </template>
-
-<style scoped>
-#components-layout-demo-side .logo {
-  height: 32px;
-  margin: 16px;
-  background: rgba(255, 255, 255, 0.3);
-}
-
-.site-layout .site-layout-background {
-  background: #fff;
-}
-[data-theme="dark"] .site-layout .site-layout-background {
-  background: #141414;
-}
-</style>
