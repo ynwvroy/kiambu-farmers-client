@@ -110,22 +110,7 @@ const showDeleteConfirm = async (category_id: number) => {
     <!-- ---------------------------------------------- -->
     <!--Title -->
     <!-- ---------------------------------------------- -->
-    <h1 class="text-h1 py-4">Product Categories</h1>
-
-    <!-- ---------------------------------------------- -->
-    <!--Analytics -->
-    <!-- ---------------------------------------------- -->
-    <v-row class="py-12">
-      <v-col cols="12" md="4" xs="12">
-        <ModulesProductCategoriesLeastPopular />
-      </v-col>
-      <v-col cols="12" md="4" xs="12">
-        <ModulesProductCategoriesMostPopular />
-      </v-col>
-      <v-col cols="12" md="4" xs="12">
-        <ModulesProductCategoriesTotal />
-      </v-col>
-    </v-row>
+    <h1 class="text-h2 py-4">Product Categories</h1>
 
     <!-- ---------------------------------------------- -->
     <!--ProductCategories table -->

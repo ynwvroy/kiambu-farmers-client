@@ -147,26 +147,11 @@ const showDeleteConfirm = async (order_id: number) => {
 </script>
 
 <template>
-  <div class="pa-4">
+  <div>
     <!-- ---------------------------------------------- -->
     <!--Title -->
     <!-- ---------------------------------------------- -->
-    <h1 class="text-h1 py-4">Orders</h1>
-
-    <!-- ---------------------------------------------- -->
-    <!--Analytics -->
-    <!-- ---------------------------------------------- -->
-    <v-row class="py-12">
-      <v-col cols="12" md="4" xs="12">
-        <ModulesOrdersLeastPopular />
-      </v-col>
-      <v-col cols="12" md="4" xs="12">
-        <ModulesOrdersMostPopular />
-      </v-col>
-      <v-col cols="12" md="4" xs="12">
-        <ModulesOrdersTotal />
-      </v-col>
-    </v-row>
+    <h1 class="text-h2 py-4">Orders</h1>
 
     <!-- ---------------------------------------------- -->
     <!--Orders table -->
@@ -191,12 +176,9 @@ const showDeleteConfirm = async (order_id: number) => {
               :expand-column-width="1000"
             >
               <template #bodyCell="{ column, record }">
-
                 <!-- Product relation -->
                 <template v-if="column.key === 'product_id'">
-                  <span
-                    v-if="record.product_id && record.product_id > 0"
-                  >
+                  <span v-if="record.product_id && record.product_id > 0">
                     ({{ record.product.id }})
                     {{ record?.product?.name }}
                   </span>
@@ -204,19 +186,15 @@ const showDeleteConfirm = async (order_id: number) => {
 
                 <!-- Seller relation -->
                 <template v-if="column.key === 'seller_id'">
-                  <span
-                    v-if="record.seller_id && record.seller_id > 0"
-                  >
+                  <span v-if="record.seller_id && record.seller_id > 0">
                     ({{ record.seller.id }})
                     {{ record?.seller?.full_name }}
                   </span>
                 </template>
 
-                 <!-- Buyer relation -->
-                 <template v-if="column.key === 'buyer_id'">
-                  <span
-                    v-if="record.buyer_id && record.buyer_id > 0"
-                  >
+                <!-- Buyer relation -->
+                <template v-if="column.key === 'buyer_id'">
+                  <span v-if="record.buyer_id && record.buyer_id > 0">
                     ({{ record.buyer.id }})
                     {{ record?.buyer?.full_name }}
                   </span>

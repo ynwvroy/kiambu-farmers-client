@@ -11,7 +11,6 @@ import {
 import {
   IconShoppingCart,
   IconCurrencyEuro,
-  IconCurrencyEuroOff,
   IconChartPie2,
   IconTruckDelivery,
   IconAlignBoxLeftMiddle,
@@ -80,15 +79,9 @@ const sidebarItems = ref([
     user_type: ["farmer"],
   },
   {
-    title: "Income",
+    title: "Income & Expenses",
     icon: IconCurrencyEuro,
     to: "/producer/income",
-    user_type: ["farmer"],
-  },
-  {
-    title: "Expenses",
-    icon: IconCurrencyEuroOff,
-    to: "/producer/expenses",
     user_type: ["farmer"],
   },
   {
