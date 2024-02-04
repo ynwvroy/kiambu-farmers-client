@@ -1,12 +1,17 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div>
-    <h1>Hello, World!</h1>
+    <!-- ---------------------------------------------- -->
+    <!-- Page Crumb -->
+    <!-- ---------------------------------------------- -->
+    <a-breadcrumb style="margin: 16px 0">
+      <a-breadcrumb-item>Home</a-breadcrumb-item>
+      <a-breadcrumb-item></a-breadcrumb-item>
+    </a-breadcrumb>
+    <h1>Hello world</h1>
   </div>
 </template>
-
 
 <style scoped>
 </style>
