@@ -55,21 +55,15 @@ const sidebarItems = ref([
   },
   { header: "Farmer Dashboard", user_type: ["farmer"] },
   {
-    title: "Products Overview",
-    icon: IconChartPie2,
-    to: "producer/products-overview",
-    user_type: ["farmer"],
-  },
-  {
     title: "My Products",
     icon: FileDescriptionIcon,
-    to: "producer/products",
+    to: "/producer/products",
     user_type: ["farmer"],
   },
   {
     title: "Orders",
     icon: IconShoppingCart,
-    to: "producer/orders",
+    to: "/producer/orders",
     user_type: ["farmer"],
   },
   {
@@ -81,7 +75,7 @@ const sidebarItems = ref([
   {
     title: "Income & Expenses",
     icon: IconCurrencyEuro,
-    to: "/producer/income",
+    to: "/producer/income-expense",
     user_type: ["farmer"],
   },
   {
