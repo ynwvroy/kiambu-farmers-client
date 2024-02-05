@@ -14,7 +14,7 @@ import {
   IconChartPie2,
   IconTruckDelivery,
   IconAlignBoxLeftMiddle,
-  IconCoins
+  IconCoins,
 } from "@tabler/icons-vue";
 
 const sDrawer = ref(true);
@@ -28,6 +28,12 @@ const sidebarItems = ref([
     icon: LayoutDashboardIcon,
     to: "/home",
     user_type: ["super_admin", "farmer", "user"],
+  },
+  {
+    title: "Finance Overview",
+    icon: CashBanknoteIcon,
+    to: "/producer/finance-overview",
+    user_type: ["farmer"],
   },
   {
     title: "Products",
@@ -54,6 +60,7 @@ const sidebarItems = ref([
     user_type: ["super_admin"],
   },
   { header: "Farmer Dashboard", user_type: ["farmer"] },
+
   {
     title: "My Products",
     icon: FileDescriptionIcon,
@@ -66,12 +73,7 @@ const sidebarItems = ref([
     to: "/producer/orders",
     user_type: ["farmer"],
   },
-  {
-    title: "Finance Overview",
-    icon: CashBanknoteIcon,
-    to: "/producer/finance-overview",
-    user_type: ["farmer"],
-  },
+
   {
     title: "Income & Expenses",
     icon: IconCurrencyEuro,
@@ -123,7 +125,7 @@ watchEffect(() => {
     class="leftSidebar"
     v-model="sDrawer"
   >
-    <div class="pa-5">
+    <div class="" style="max-height: 70px;">
       <NavigationLogo />
     </div>
     <!-- ---------------------------------------------- -->

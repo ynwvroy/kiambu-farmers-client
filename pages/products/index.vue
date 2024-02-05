@@ -136,9 +136,16 @@ const showDeleteConfirm = async (product_id: number) => {
 <template>
   <div>
     <!-- ---------------------------------------------- -->
-    <!--Title -->
+    <!--Header -->
     <!-- ---------------------------------------------- -->
-    <h1 class="text-h2 py-4">Products</h1>
+    <BaseHeader
+      title="Products"
+      pageCrumbTitle="Dashboard"
+      pageName="Products"
+      :hasActionButton="true"
+      buttonName="Create Product"
+      buttonRouteTo="/products/new-product"
+    />
 
     <!-- ---------------------------------------------- -->
     <!--Products table -->
@@ -146,14 +153,6 @@ const showDeleteConfirm = async (product_id: number) => {
     <v-row>
       <v-col cols="12" md="12">
         <div class="py-7 pt-1">
-          <div class="px-3 pb-5">
-            <v-btn color="info" @click="openProductsForm()">
-              <div class="d-flex align-center gap-2">
-                <PlusSquareOutlined :size="24" />
-                Create Product
-              </div>
-            </v-btn>
-          </div>
           <div>
             <a-table
               :dataSource="productsFormState"
@@ -184,7 +183,6 @@ const showDeleteConfirm = async (product_id: number) => {
                     ({{ record.category.id }}) {{ record.category.name }}
                   </span>
                 </template>
-
 
                 <!-- Actions -->
                 <template v-if="column.key === 'action'">
