@@ -143,9 +143,16 @@ const showDeleteConfirm = async (sale_id: number) => {
 <template>
   <div>
     <!-- ---------------------------------------------- -->
-    <!--Title -->
+    <!--Header -->
     <!-- ---------------------------------------------- -->
-    <h1 class="text-h2 py-4">Sales</h1>
+    <BaseHeader
+      title="Sales"
+      pageCrumbTitle="Dashboard"
+      pageName="Sales"
+      :hasActionButton="true"
+      buttonName="New Sale"
+      buttonRouteTo="/sales/new-sale"
+    />
 
     <!-- ---------------------------------------------- -->
     <!--Sales table -->
@@ -153,14 +160,6 @@ const showDeleteConfirm = async (sale_id: number) => {
     <v-row>
       <v-col cols="12" md="12">
         <div class="py-7 pt-1">
-          <div class="px-3 pb-5">
-            <v-btn color="info" @click="openSalesForm()">
-              <div class="d-flex align-center gap-2">
-                <PlusSquareOutlined :size="24" />
-                Create Sale
-              </div>
-            </v-btn>
-          </div>
           <div>
             <a-table
               :dataSource="salesFormState"

@@ -44,7 +44,7 @@ const sidebarItems = ref([
   {
     title: "Finance Analysis",
     icon: IconCoins,
-    to: "/sales",
+    to: "/finance-analysis",
     user_type: ["super_admin"],
   },
   {
