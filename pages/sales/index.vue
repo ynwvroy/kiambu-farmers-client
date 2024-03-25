@@ -14,6 +14,10 @@ useHead({
   ],
 });
 
+const userId = useCookie<string | any>("user_id");
+
+const userType = useCookie<string | undefined>("user_type");
+
 const {
   isEditingSales,
   getSingleSale,
@@ -25,7 +29,9 @@ const {
 
 const router = useRouter();
 
-const response = await useApi<IGetAllSales>("/sales", {
+const url = userType.value === "farmer" ? `/sales/seller/${userId.value}` : "/sales";
+
+const response = await useApi<IGetAllSales>(url, {
   method: "GET",
 });
 
