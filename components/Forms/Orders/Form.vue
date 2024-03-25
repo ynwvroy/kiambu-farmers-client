@@ -9,6 +9,60 @@ const saveOrder = async () => {
     await createOrder();
   }
 };
+
+const paymentMethods = [
+  {
+    title: "Cash deposit",
+    value: "deposit",
+  },
+  {
+    title: "Bank transfer",
+    value: "bank_transfer",
+  },
+];
+
+const paymentStatus = [
+  {
+    title: "Paid",
+    value: "paid",
+  },
+  {
+    title: "Pending",
+    value: "pending",
+  },
+];
+
+const allUsers = ref<any>();
+
+const usersResponse = await useApi<IGetAllUsers>("/user", {
+  method: "GET",
+});
+allUsers.value = usersResponse?.data;
+
+const formattedUsers = ref<any>([]);
+for (let i = 0; i < allUsers.value.length; i++) {
+  const farmer = allUsers.value[i];
+  formattedUsers.value.push({
+    title: farmer.full_name,
+    value: farmer.id,
+  });
+}
+
+const allProducts = ref<any>();
+
+const productsResponse = await useApi<IGetAllProducts>("/products", {
+  method: "GET",
+});
+allProducts.value = productsResponse?.data;
+
+const formattedProducts = ref<any>([]);
+for (let i = 0; i < allProducts.value.length; i++) {
+  const farmer = allProducts.value[i];
+  formattedProducts.value.push({
+    title: farmer.name,
+    value: farmer.id,
+  });
+}
 </script>
 
 <template>
@@ -16,34 +70,38 @@ const saveOrder = async () => {
     <v-row>
       <v-col cols="12" md="6" xs="12">
         <v-label class="font-weight-bold mb-1">Buyer</v-label>
-        <v-text-field
+        <v-select
           v-model="ordersFormState.buyer_id"
-          variant="outlined"
+          outlined
           hide-details
           color="primary"
-        ></v-text-field>
+          :items="formattedUsers"
+        >
+        </v-select>
       </v-col>
-    </v-row>
-    <v-row>
       <v-col cols="12" md="6" xs="12">
         <v-label class="font-weight-bold mb-1">Seller</v-label>
-        <v-text-field
+        <v-select
           v-model="ordersFormState.seller_id"
-          variant="outlined"
+          outlined
           hide-details
           color="primary"
-        ></v-text-field>
+          :items="formattedUsers"
+        >
+        </v-select>
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="6">
         <v-label class="font-weight-bold mb-1">Product name</v-label>
-        <v-text-field
+        <v-select
           v-model="ordersFormState.product_id"
-          variant="outlined"
+          outlined
           hide-details
           color="primary"
-        ></v-text-field>
+          :items="formattedProducts"
+        >
+        </v-select>
       </v-col>
       <v-col cols="6">
         <v-label class="font-weight-bold mb-1">Quantity</v-label>
@@ -67,23 +125,27 @@ const saveOrder = async () => {
       </v-col>
       <v-col cols="6">
         <v-label class="font-weight-bold mb-1">Status</v-label>
-        <v-text-field
+        <v-select
           v-model="ordersFormState.status"
-          variant="outlined"
+          outlined
           hide-details
           color="primary"
-        ></v-text-field>
+          :items="paymentStatus"
+        >
+        </v-select>
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="6">
         <v-label class="font-weight-bold mb-1">Payment Method</v-label>
-        <v-text-field
+        <v-select
           v-model="ordersFormState.payment_method"
-          variant="outlined"
+          outlined
           hide-details
           color="primary"
-        ></v-text-field>
+          :items="paymentMethods"
+        >
+        </v-select>
       </v-col>
       <v-col cols="6">
         <v-label class="font-weight-bold mb-1">Transaction ID</v-label>
@@ -116,7 +178,7 @@ const saveOrder = async () => {
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="6">
+      <v-col cols="12">
         <v-label class="font-weight-bold mb-1">Comments</v-label>
         <v-textarea
           v-model="ordersFormState.comments"
@@ -126,7 +188,6 @@ const saveOrder = async () => {
         ></v-textarea>
       </v-col>
     </v-row>
-
 
     <v-row class="py-12 px-6" justify="end">
       <v-btn color="secondary" @click="saveOrder()">

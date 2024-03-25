@@ -38,31 +38,31 @@ const sidebarItems = ref([
   {
     title: "Products",
     icon: FileDescriptionIcon,
-    to: "/admin/products",
+    to: "/products",
     user_type: ["super_admin"],
   },
   {
     title: "Users",
     icon: UsersIcon,
-    to: "/admin/users",
+    to: "/users",
     user_type: ["super_admin"],
   },
   {
     title: "Sales",
     icon: IconCoins,
-    to: "/admin/sales",
+    to: "/sales",
     user_type: ["super_admin"],
   },
   {
     title: "Product Categories",
     icon: IconAlignBoxLeftMiddle,
-    to: "/admin/product-categories",
+    to: "/product-categories",
     user_type: ["super_admin"],
   },
   {
     title: "Orders",
     icon: IconTruckDelivery,
-    to: "/admin/orders",
+    to: "/orders",
     user_type: ["super_admin"],
   },
 

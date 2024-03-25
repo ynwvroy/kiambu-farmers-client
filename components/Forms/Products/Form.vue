@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  const userType = useCookie("user_type");
+const userType = useCookie("user_type");
 
 const {
   isEditingProducts,
@@ -16,16 +16,42 @@ const saveProduct = async () => {
   }
 };
 
-const productCategories = ref<IGetAllProductCategories>();
+const productCategories = ref<any>();
 
+const allFarmers = ref<any>();
 
-
-const productCategoriesResponse = await useApi<IGetAllProductCategories>("/product-categories", {
+const farmersResponse = await useApi<IGetAllUsers>("/user/all/farmers", {
   method: "GET",
 });
 
-productCategories.value = productCategoriesResponse?.data
+allFarmers.value = farmersResponse?.data;
 
+const productCategoriesResponse = await useApi<IGetAllProductCategories>(
+  "/product-categories",
+  {
+    method: "GET",
+  }
+);
+
+productCategories.value = productCategoriesResponse?.data;
+
+const formattedProductCategories = ref<any>([]);
+for (let i = 0; i < productCategories.value.length; i++) {
+  const category = productCategories.value[i];
+  formattedProductCategories.value.push({
+    title: category.name,
+    value: category.id,
+  });
+}
+
+const formattedFarmers = ref<any>([]);
+for (let i = 0; i < allFarmers.value.length; i++) {
+  const farmer = allFarmers.value[i];
+  formattedFarmers.value.push({
+    title: farmer.full_name,
+    value: farmer.id,
+  });
+}
 </script>
 
 <template>
@@ -62,12 +88,14 @@ productCategories.value = productCategoriesResponse?.data
       </v-col>
       <v-col cols="12" md="6" xs="12">
         <v-label class="font-weight-bold mb-1">Product Category</v-label>
-        <v-text-field
+        <v-select
           v-model="productsFormState.category_id"
-          variant="outlined"
+          outlined
           hide-details
           color="primary"
-        ></v-text-field>
+          :items="formattedProductCategories"
+        >
+        </v-select>
       </v-col>
     </v-row>
     <v-row>
@@ -84,12 +112,20 @@ productCategories.value = productCategoriesResponse?.data
     <v-row>
       <v-col cols="12" md="6" xs="12">
         <v-label class="font-weight-bold mb-1">Seller</v-label>
-        <v-text-field
+        <!-- <v-text-field
           variant="outlined"
           v-model="productsFormState.seller_id"
           hide-details
           color="primary"
-        ></v-text-field>
+        ></v-text-field> -->
+        <v-select
+        v-model="productsFormState.seller_id"
+          outlined
+          hide-details
+          color="primary"
+          :items="formattedFarmers"
+        >
+        </v-select>
       </v-col>
       <v-col cols="12" md="6" xs="12">
         <v-label class="font-weight-bold mb-1">Units sold</v-label>
