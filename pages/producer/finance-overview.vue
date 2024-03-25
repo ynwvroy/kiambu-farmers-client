@@ -165,14 +165,6 @@ const showDeleteConfirm = async (sale_id: number) => {
               :expand-column-width="1000"
             >
               <template #bodyCell="{ column, record }">
-                <!-- Sale image -->
-                <template v-if="column.key === 'image_url'">
-                  <v-img
-                    :src="record.image_url"
-                    style="height: 2rem; width: 2rem"
-                  />
-                </template>
-
                 <!-- Seller relation -->
                 <template v-if="column.key === 'farmer_id'">
                   <span v-if="record.farmer_id && record.farmer_id > 0">

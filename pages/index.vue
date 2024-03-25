@@ -77,11 +77,7 @@ products.value = response?.data;
             >
               <v-card elevation="10" class="withbg" rounded="md">
                 <NuxtLink :to="product.link">
-                  <v-img
-                    :src="product.image_url"
-                    height="100%"
-                    class="rounded-t-md"
-                  ></v-img>
+                  fix here
                 </NuxtLink>
                 <div class="d-flex justify-end mr-4 mt-n5">
                   <v-btn size="40" icon class="bg-primary d-flex">

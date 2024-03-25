@@ -23,6 +23,8 @@ const userType = useCookie("user_type");
 
 const sidebarItems = ref([
   { header: "Admin Dashboard", user_type: ["super_admin"] },
+  { header: "Farmer Dashboard", user_type: ["farmer"] },
+  { header: "Regular customer", user_type: ["user"] },
   {
     title: "Dashboard",
     icon: LayoutDashboardIcon,
@@ -59,7 +61,6 @@ const sidebarItems = ref([
     to: "/orders",
     user_type: ["super_admin"],
   },
-  { header: "Farmer Dashboard", user_type: ["farmer"] },
 
   {
     title: "My Products",
@@ -86,7 +87,6 @@ const sidebarItems = ref([
     to: "/producer/forecast",
     user_type: ["farmer"],
   },
-  { header: "Regular customer", user_type: ["user"] },
   {
     title: "View orders",
     icon: ComponentsIcon,

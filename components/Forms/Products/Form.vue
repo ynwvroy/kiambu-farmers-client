@@ -69,15 +69,6 @@ const saveProduct = async () => {
           color="primary"
         ></v-text-field>
       </v-col>
-      <v-col cols="12" md="6" xs="12">
-        <v-label class="font-weight-bold mb-1">Image URL</v-label>
-        <v-text-field
-          v-model="productsFormState.image_url"
-          variant="outlined"
-          hide-details
-          color="primary"
-        ></v-text-field>
-      </v-col>
     </v-row>
     <v-row>
       <v-col cols="12" md="6" xs="12">

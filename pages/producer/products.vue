@@ -42,13 +42,6 @@ const columns = ref<TableColumnsType>([
     width: 50,
   },
   {
-    title: "Image",
-    dataIndex: "image_url",
-    key: "image_url",
-    resizable: true,
-    width: 60,
-  },
-  {
     title: "Name",
     dataIndex: "name",
     key: "name",
@@ -165,14 +158,6 @@ const showDeleteConfirm = async (product_id: number) => {
               :expand-column-width="1000"
             >
               <template #bodyCell="{ column, record }">
-                <!-- Product image -->
-                <template v-if="column.key === 'image_url'">
-                  <v-img
-                    :src="record.image_url"
-                    style="height: 2rem; width: 2rem"
-                  />
-                </template>
-
                 <!-- Category relation -->
                 <template v-if="column.key === 'category_id'">
                   <span v-if="record.category_id && record.category_id > 0">
