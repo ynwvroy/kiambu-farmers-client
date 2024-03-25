@@ -3,6 +3,10 @@ export function useOrders() {
 
   const orders = ref<IGetAllOrders>();
 
+  const userType = useCookie("user_type");
+
+  const userId = useCookie<string | any>("user_id");
+
   const isEditingOrders = useState<boolean>("is-editing-order", () => false);
 
   /**
@@ -59,7 +63,12 @@ export function useOrders() {
    */
   const getAllOrders = async () => {
     try {
-      const response = await useApi<IGetAllOrders>("/orders", {
+      const url =
+        userType.value === "farmer"
+          ? `/orders/seller/${userId.value}`
+          : "/orders";
+
+      const response = await useApi<IGetAllOrders>(url, {
         method: "GET",
       });
 

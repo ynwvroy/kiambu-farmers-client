@@ -97,13 +97,6 @@ const columns = ref<TableColumnsType>([
     resizable: true,
     width: 80,
   },
-  // {
-  //   title: "Payment Date",
-  //   dataIndex: "payment_received_date",
-  //   key: "payment_received_date",
-  //   resizable: true,
-  //   width: 60,
-  // },
   {
     title: "Actions",
     key: "action",

@@ -131,22 +131,21 @@ const showDeleteConfirm = async (user_id: number) => {
     <!-- ---------------------------------------------- -->
     <!--Title -->
     <!-- ---------------------------------------------- -->
-    <h1 class="text-h1 py-4">Users</h1>
-
+    <!-- <h1 class="text-h1 py-4">Users</h1> -->
+    <BaseHeader
+      title="Users"
+      pageCrumbTitle="Dashboard"
+      pageName="Users"
+      :hasActionButton="true"
+      buttonName="New User"
+      buttonRouteTo="/users/new-user"
+    />
     <!-- ---------------------------------------------- -->
     <!--Users table -->
     <!-- ---------------------------------------------- -->
     <v-row>
       <v-col cols="12" md="12">
         <div class="py-7 pt-1">
-          <div class="px-3 pb-5">
-            <v-btn color="info" @click="openUserForm()">
-              <div class="d-flex align-center gap-2">
-                <PlusSquareOutlined :size="24" />
-                Create User
-              </div>
-            </v-btn>
-          </div>
           <div>
             <a-table
               :dataSource="userFormState"

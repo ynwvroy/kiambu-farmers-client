@@ -37,14 +37,14 @@ const columns = ref<TableColumnsType>([
     dataIndex: "id",
     key: "id",
     resizable: true,
-    width: 30,
+    width: 10,
   },
   {
     title: "Name",
     dataIndex: "name",
     key: "name",
     resizable: true,
-    width: 100,
+    width: 30,
   },
   {
     title: "Description",
@@ -52,7 +52,7 @@ const columns = ref<TableColumnsType>([
     key: "description",
     resizable: true,
     ellipsis: true,
-    width: 200,
+    width: 50,
   },
   {
     title: "Actions",
@@ -103,22 +103,21 @@ const showDeleteConfirm = async (category_id: number) => {
     <!-- ---------------------------------------------- -->
     <!--Title -->
     <!-- ---------------------------------------------- -->
-    <h1 class="text-h2 py-4">Product Categories</h1>
-
+    <!-- <h1 class="text-h2 py-4">Product Categories</h1> -->
+    <BaseHeader
+      title="Product Categories"
+      pageCrumbTitle="Dashboard"
+      pageName="Product Categories"
+      :hasActionButton="true"
+      buttonName="New Category"
+      buttonRouteTo="/product-categories/new-category"
+    />
     <!-- ---------------------------------------------- -->
     <!--ProductCategories table -->
     <!-- ---------------------------------------------- -->
     <v-row>
       <v-col cols="12" md="12">
         <div class="py-7 pt-1">
-          <div class="px-3 pb-5">
-            <v-btn color="info" @click="openProductCategory()">
-              <div class="d-flex align-center gap-2">
-                <PlusSquareOutlined :size="24" />
-                Create Product Category
-              </div>
-            </v-btn>
-          </div>
           <div>
             <a-table
               :dataSource="ProductCategoryFormState"

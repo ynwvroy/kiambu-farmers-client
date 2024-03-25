@@ -158,7 +158,14 @@ const showDeleteConfirm = async (order_id: number) => {
     <!-- ---------------------------------------------- -->
     <!--Title -->
     <!-- ---------------------------------------------- -->
-    <h1 class="text-h2 py-4">Orders</h1>
+    <BaseHeader
+      title="Orders"
+      pageCrumbTitle="Dashboard"
+      pageName="Orders"
+      :hasActionButton="true"
+      buttonName="New Order"
+      buttonRouteTo="/orders/new-order"
+    />
 
     <!-- ---------------------------------------------- -->
     <!--Orders table -->
@@ -166,14 +173,6 @@ const showDeleteConfirm = async (order_id: number) => {
     <v-row>
       <v-col cols="12" md="12">
         <div class="py-7 pt-1">
-          <div class="px-3 pb-5">
-            <v-btn color="info" @click="openOrdersForm()">
-              <div class="d-flex align-center gap-2">
-                <PlusSquareOutlined :size="24" />
-                Create Order
-              </div>
-            </v-btn>
-          </div>
           <div>
             <a-table
               :dataSource="ordersFormState"

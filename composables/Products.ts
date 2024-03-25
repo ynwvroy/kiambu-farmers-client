@@ -58,20 +58,10 @@ export function useProducts() {
    */
   const getAllProducts = async () => {
     try {
-
-      if (userType.value === 'farmer') {
-
-        const response = await useApi<IGetAllProducts>(`/products/seller/${userId.value}`, {
-          method: "GET",
-        });
-
-      } else if (userType.value === 'super_admin') {
-
-        const response = await useApi<IGetAllProducts>("/products", {
-          method: "GET",
-        });
-
-      }
+      const url = userType.value === "farmer" ? `/products/seller/${userId.value}` : "/products";
+      const response = await useApi<IGetAllProducts>(url, {
+        method: "GET",
+      });
 
       productsFormState.value = response?.data;
       return response?.data;

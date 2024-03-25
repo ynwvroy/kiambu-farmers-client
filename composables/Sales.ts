@@ -63,18 +63,11 @@ export function useSales() {
    */
   const getAllSales = async () => {
     try {
-      if (userType.value === "farmer") {
-        const response = await useApi<IGetAllSales>(
-          `/sales/seller/${userId.value}`,
-          {
-            method: "GET",
-          }
-        );
-      } else if (userType.value === "super_admin") {
-        const response = await useApi<IGetAllSales>("/sales", {
-          method: "GET",
-        });
-      }
+      const url = userType.value === "farmer" ? `/sales/seller/${userId.value}` : "/sales";
+
+      const response = await useApi<IGetAllSales>(url, {
+        method: "GET",
+      });
 
       salesFormState.value = response?.data;
       return response?.data;
