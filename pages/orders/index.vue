@@ -7,6 +7,10 @@ useHead({
   title: "Orders",
 });
 
+const userId = useCookie<string | any>("user_id");
+
+const userType = useCookie<string | undefined>("user_type");
+
 const router = useRouter();
 
 const {
@@ -18,7 +22,10 @@ const {
   getAllOrders,
 } = useOrders();
 
-const response = await useApi<IGetAllOrders>("/orders", {
+const url =
+  userType.value === "farmer" ? `/orders/seller/${userId.value}` : "/orders";
+
+const response = await useApi<IGetAllOrders>(url, {
   method: "GET",
 });
 

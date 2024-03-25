@@ -22,22 +22,13 @@ const {
 
 const router = useRouter();
 
-if (userType.value === "farmer") {
-  const response = await useApi<IGetAllProducts>(
-    `/products/seller/${userId.value}`,
-    {
-      method: "GET",
-    }
-  );
+const url = userType.value === "farmer" ? `/products/seller/${userId.value}` : "/products";
 
-  productsFormState.value = response?.data;
-} else {
-  const response = await useApi<IGetAllProducts>("/products", {
-    method: "GET",
-  });
+const response = await useApi<IGetAllProducts>(url, {
+  method: "GET",
+});
 
-  productsFormState.value = response?.data;
-}
+productsFormState.value = response?.data;
 
 const columns = ref<TableColumnsType>([
   {

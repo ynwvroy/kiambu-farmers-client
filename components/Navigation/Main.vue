@@ -39,6 +39,18 @@ const sidebarItems = ref([
     to: "/products",
     user_type: ["super_admin", "farmer"],
   },
+  {
+    title: userType.value === 'farmer' ? 'My Sales' : 'Sales',
+    icon: IconCoins,
+    to: "/sales",
+    user_type: ["super_admin", "farmer"],
+  },
+  {
+    title: userType.value === 'farmer' ? 'My Orders' : 'Orders',
+    icon: IconTruckDelivery,
+    to: "/orders",
+    user_type: ["super_admin", "farmer"],
+  },
   // Super admin only
   {
     title: "Users",
@@ -47,39 +59,15 @@ const sidebarItems = ref([
     user_type: ["super_admin"],
   },
   {
-    title: "Sales",
-    icon: IconCoins,
-    to: "/sales",
-    user_type: ["super_admin"],
-  },
-  {
     title: "Product Categories",
     icon: IconAlignBoxLeftMiddle,
     to: "/product-categories",
     user_type: ["super_admin"],
   },
-  {
-    title: "Orders",
-    icon: IconTruckDelivery,
-    to: "/orders",
-    user_type: ["super_admin"],
-  },
+
 
 
   // Farmer only
-  {
-    title: "My Sales",
-    icon: CashBanknoteIcon,
-    to: "/producer/sales",
-    user_type: ["farmer"],
-  },
-  {
-    title: "My Orders",
-    icon: IconShoppingCart,
-    to: "/producer/orders",
-    user_type: ["farmer"],
-  },
-
   {
     title: "Income & Expenses",
     icon: IconCurrencyEuro,
