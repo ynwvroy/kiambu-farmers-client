@@ -5,7 +5,7 @@ import {
   ComponentsIcon,
   CashBanknoteIcon,
   Menu2Icon,
-  CloudIcon,
+  UsersIcon,
 } from "vue-tabler-icons";
 
 import {
@@ -25,22 +25,26 @@ const sidebarItems = ref([
   { header: "Admin Dashboard", user_type: ["super_admin"] },
   { header: "Farmer Dashboard", user_type: ["farmer"] },
   { header: "Regular customer", user_type: ["user"] },
+
+  // Common for all
   {
     title: "Dashboard",
     icon: LayoutDashboardIcon,
     to: "/home",
     user_type: ["super_admin", "farmer", "user"],
   },
-  {
-    title: "My Sales",
-    icon: CashBanknoteIcon,
-    to: "/producer/sales",
-    user_type: ["farmer"],
-  },
+
+  // Super admin only
   {
     title: "Products",
     icon: FileDescriptionIcon,
     to: "/products",
+    user_type: ["super_admin"],
+  },
+  {
+    title: "Users",
+    icon: UsersIcon,
+    to: "/users",
     user_type: ["super_admin"],
   },
   {
@@ -62,6 +66,14 @@ const sidebarItems = ref([
     user_type: ["super_admin"],
   },
 
+
+  // Farmer only
+  {
+    title: "My Sales",
+    icon: CashBanknoteIcon,
+    to: "/producer/sales",
+    user_type: ["farmer"],
+  },
   {
     title: "My Products",
     icon: FileDescriptionIcon,
@@ -81,14 +93,10 @@ const sidebarItems = ref([
     to: "/producer/income-expense",
     user_type: ["farmer"],
   },
-  // {
-  //   title: "Weather Forecast",
-  //   icon: CloudIcon,
-  //   to: "/producer/forecast",
-  //   user_type: ["farmer"],
-  // },
+
+  // Regular user only
   {
-    title: "View orders",
+    title: "My orders",
     icon: ComponentsIcon,
     to: "/my-tickets",
     user_type: ["user"],
