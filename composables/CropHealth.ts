@@ -60,6 +60,39 @@ export function useCropHealth() {
       console.error("Error getAllCropHealth::: ", error);
     }
   };
+  /**
+ * ---------------------------------------------------
+ * Get single crop health record
+ * ---------------------------------------------------
+ */
+const getSingleCropHealth = async (id: number) => {
+  try {
+    const response = await useApi<IGetSingleCropHealth>(`/crop-health/${id}`, {
+      method: 'GET',
+    });
+    if (response?.success) {
+      return response.data;
+    } else {
+      notification.error({
+        description: 'Failed to fetch crop health record. Please try again.',
+        message: 'Error',
+        placement: 'bottomRight',
+        duration: 8,
+      });
+      return null;
+    }
+  } catch (error) {
+    console.error('Error getCropHealth::: ', error);
+    notification.error({
+      description: 'Failed to fetch crop health record. Please try again.',
+      message: 'Error',
+      placement: 'bottomRight',
+      duration: 8,
+    });
+    return null;
+  }
+};
+
 
   /**
    * ---------------------------------------------------
@@ -168,6 +201,7 @@ export function useCropHealth() {
     isEditingCropHealth,
     getAllCropHealth,
     createCropHealth,
+    getSingleCropHealth,
     updateCropHealth,
     deleteCropHealth,
     resetCropHealthFormState,

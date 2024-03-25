@@ -1,7 +1,16 @@
 export function useLivestockHealth() {
   const router = useRouter();
 
+  const userType = useCookie("user_type");
+
+  const userId = useCookie<string | any>("user_id");
+
   const livestockHealth = ref<ILivestockHealth[]>();
+
+  const isEditingLivestockHealth = useState<boolean>(
+    "is-editing-product",
+    () => false
+  );
 
   /**
    * ---------------------------------------------------
@@ -70,6 +79,40 @@ export function useLivestockHealth() {
       });
     }
   };
+
+  /**
+ * ---------------------------------------------------
+ * Get single livestock health record
+ * ---------------------------------------------------
+ */
+const getSingleLivestockHealth = async (id: number) => {
+  try {
+    const response = await useApi<IGetSingleLivestockHealth>(`/livestock-health/${id}`, {
+      method: 'GET',
+    });
+    if (response?.success) {
+      return response.data;
+    } else {
+      notification.error({
+        description: 'Failed to fetch livestock health record. Please try again.',
+        message: 'Error',
+        placement: 'bottomRight',
+        duration: 8,
+      });
+      return null;
+    }
+  } catch (error) {
+    console.error('Error getLivestockHealth::: ', error);
+    notification.error({
+      description: 'Failed to fetch livestock health record. Please try again.',
+      message: 'Error',
+      placement: 'bottomRight',
+      duration: 8,
+    });
+    return null;
+  }
+};
+
 
   /**
    * ---------------------------------------------------
@@ -171,6 +214,8 @@ export function useLivestockHealth() {
   return {
     livestockHealth,
     livestockHealthFormState,
+    isEditingLivestockHealth,
+    getSingleLivestockHealth,
     getAllLivestockHealth,
     createLivestockHealth,
     updateLivestockHealth,
