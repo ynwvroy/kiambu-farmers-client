@@ -16,6 +16,7 @@ const {
   getSingleProduct,
   resetProductsFormState,
   productsFormState,
+  products,
   deleteSingleProduct,
   getAllProducts,
 } = useProducts();
@@ -31,7 +32,7 @@ const response = await useApi<IGetAllProducts>(url, {
   method: "GET",
 });
 
-productsFormState.value = response?.data;
+products.value = response?.data;
 
 const columns = ref<TableColumnsType>([
   {
@@ -151,7 +152,7 @@ const showDeleteConfirm = async (product_id: number) => {
         <div class="py-7 pt-1">
           <div>
             <a-table
-              :dataSource="productsFormState"
+              :dataSource="products"
               :columns="columns"
               @resizeColumn="handleResizeColumn"
               :scroll="{ x: 2000 }"

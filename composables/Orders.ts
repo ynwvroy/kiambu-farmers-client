@@ -72,7 +72,7 @@ export function useOrders() {
         method: "GET",
       });
 
-      ordersFormState.value = response?.data;
+      orders.value = response?.data;
       return response?.data;
     } catch (error) {
       console.error("Error getAllOrders::: ", error);

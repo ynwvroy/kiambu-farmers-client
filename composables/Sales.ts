@@ -69,7 +69,7 @@ export function useSales() {
         method: "GET",
       });
 
-      salesFormState.value = response?.data;
+      sales.value = response?.data;
       return response?.data;
     } catch (error) {
       console.error("Error getAllSales::: ", error);

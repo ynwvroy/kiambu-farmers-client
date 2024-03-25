@@ -75,8 +75,6 @@ for (let i = 0; i < allProducts.value.length; i++) {
 
 <template>
   <div>
-    {{ salesFormState }} salesFormState
-
     <v-row>
       <v-col cols="12" md="6" xs="12">
         <v-label class="font-weight-bold mb-1">Seller</v-label>
@@ -161,7 +159,7 @@ for (let i = 0; i < allProducts.value.length; i++) {
         >
         </v-select>
       </v-col>
-      <v-col cols="12" md="6" xs="12">
+      <!-- <v-col cols="12" md="6" xs="12">
         <v-label class="font-weight-bold mb-1">Payment Date</v-label>
         <v-text-field
           variant="outlined"
@@ -169,7 +167,7 @@ for (let i = 0; i < allProducts.value.length; i++) {
           hide-details
           color="primary"
         ></v-text-field>
-      </v-col>
+      </v-col> -->
     </v-row>
 
     <v-row class="py-12 px-6" justify="end">

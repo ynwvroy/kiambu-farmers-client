@@ -20,6 +20,7 @@ const {
   deleteSingleOrder,
   ordersFormState,
   getAllOrders,
+  orders
 } = useOrders();
 
 const url =
@@ -29,7 +30,7 @@ const response = await useApi<IGetAllOrders>(url, {
   method: "GET",
 });
 
-ordersFormState.value = response?.data;
+orders.value = response?.data;
 
 const columns = ref<TableColumnsType>([
   {
@@ -175,7 +176,7 @@ const showDeleteConfirm = async (order_id: number) => {
         <div class="py-7 pt-1">
           <div>
             <a-table
-              :dataSource="ordersFormState"
+              :dataSource="orders"
               :columns="columns"
               @resizeColumn="handleResizeColumn"
               :scroll="{ x: 2000 }"

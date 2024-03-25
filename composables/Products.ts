@@ -63,7 +63,7 @@ export function useProducts() {
         method: "GET",
       });
 
-      productsFormState.value = response?.data;
+      products.value = response?.data;
       return response?.data;
     } catch (error) {
       console.error("Error getAllProducts::: ", error);

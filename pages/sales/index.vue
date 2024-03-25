@@ -25,6 +25,7 @@ const {
   salesFormState,
   deleteSingleSale,
   getAllSales,
+  sales
 } = useSales();
 
 const router = useRouter();
@@ -35,7 +36,7 @@ const response = await useApi<IGetAllSales>(url, {
   method: "GET",
 });
 
-salesFormState.value = response?.data;
+sales.value = response?.data;
 
 const columns = ref<TableColumnsType>([
   {
@@ -163,7 +164,7 @@ const showDeleteConfirm = async (sale_id: number) => {
         <div class="py-7 pt-1">
           <div>
             <a-table
-              :dataSource="salesFormState"
+              :dataSource="sales"
               :columns="columns"
               @resizeColumn="handleResizeColumn"
               :scroll="{ x: 2000 }"
