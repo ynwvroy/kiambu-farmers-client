@@ -22,7 +22,10 @@ const {
 
 const router = useRouter();
 
-const url = userType.value === "farmer" ? `/products/seller/${userId.value}` : "/products";
+const url =
+  userType.value === "farmer"
+    ? `/products/seller/${userId.value}`
+    : "/products";
 
 const response = await useApi<IGetAllProducts>(url, {
   method: "GET",
@@ -160,6 +163,14 @@ const showDeleteConfirm = async (product_id: number) => {
                   <span v-if="record.category_id && record.category_id > 0">
                     ({{ record.category.id }}) {{ record.category.name }}
                   </span>
+                </template>
+
+                <!-- Image -->
+                <template v-if="column.key === 'image_url'">
+                  <v-img
+                    :src="record.image_url"
+                    style="height: 2rem; width: 2rem"
+                  />
                 </template>
 
                 <!-- Actions -->

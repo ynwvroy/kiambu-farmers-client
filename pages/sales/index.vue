@@ -221,6 +221,9 @@ const showDeleteConfirm = async (sale_id: number) => {
                   <span v-else-if="record.payment_method === 'bank_transfer'">
                     <a-tag color="cyan">Bank transfer</a-tag>
                   </span>
+                  <span v-else-if="record.payment_method === 'mobile_money'">
+                    <a-tag color="blue">Mobile money</a-tag>
+                  </span>
                 </template>
 
                 <!-- Actions -->

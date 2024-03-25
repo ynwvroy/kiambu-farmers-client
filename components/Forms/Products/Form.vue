@@ -18,9 +18,7 @@ const saveProduct = async () => {
   } else {
     await createProduct();
   }
-
 };
-
 
 const productCategories = ref<any>();
 

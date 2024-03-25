@@ -49,6 +49,7 @@ const verification = [
 
 <template>
   <h3 class="text-h3 pt-12 pb-3">Enter user details</h3>
+  {{ userFormState }} userFormState
   <v-row>
     <v-col cols="12" md="6" xs="12">
       <v-label class="font-weight-bold mb-1">Full name</v-label>

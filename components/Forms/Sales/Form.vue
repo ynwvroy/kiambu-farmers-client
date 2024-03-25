@@ -32,6 +32,11 @@ const paymentMethods = [
     title: 'Bank transfer',
     value: 'bank_transfer'
   }
+  ,
+  {
+    title: 'Mobile money',
+    value: 'mobile_money'
+  }
 ]
 
 const allFarmers = ref<any>();
@@ -70,15 +75,11 @@ for (let i = 0; i < allProducts.value.length; i++) {
 
 <template>
   <div>
+    {{ salesFormState }} salesFormState
+
     <v-row>
       <v-col cols="12" md="6" xs="12">
         <v-label class="font-weight-bold mb-1">Seller</v-label>
-        <!-- <v-text-field
-          v-model="salesFormState.farmer_id"
-          variant="outlined"
-          hide-details
-          color="primary"
-        ></v-text-field> -->
         <v-select
         v-model="salesFormState.farmer_id"
           outlined

@@ -40,52 +40,58 @@ const columns = ref<TableColumnsType>([
     width: 30,
   },
   {
-    title: "Profile",
-    dataIndex: "profile_url",
-    key: "profile_url",
-    resizable: true,
-    width: 30,
-  },
-  {
     title: "Full Name",
     dataIndex: "full_name",
     key: "full_name",
     resizable: true,
+    width: 150,
   },
   {
     title: "Username",
     dataIndex: "username",
     key: "username",
     resizable: true,
+    width: 150,
+
   },
   {
     title: "Email",
     dataIndex: "email",
     key: "email",
     resizable: true,
+    width: 150,
+
   },
   {
     title: "Phone Number",
     dataIndex: "phone_number",
     key: "phone_number",
     resizable: true,
+    width: 150,
+
   },
   {
     title: "User Type",
     dataIndex: "user_type",
     key: "user_type",
     resizable: true,
+    width: 150,
+
   },
   {
     title: "Date joined",
     dataIndex: "created_at",
     key: "created_at",
     resizable: true,
+    width: 150,
+
   },
   {
     title: "Actions",
     key: "action",
     resizable: true,
+    width: 100,
+
   },
 ]);
 
@@ -165,14 +171,6 @@ const showDeleteConfirm = async (user_id: number) => {
                   >
                     {{ record.email }}
                   </div>
-                </template>
-
-                <!-- Image -->
-                <template v-if="column.key === 'profile_url'">
-                  <v-img
-                    :src="record.profile_url"
-                    style="height: 2rem; width: 2rem"
-                  />
                 </template>
 
                 <!-- User type -->

@@ -10,6 +10,18 @@ watch(
     registerFormState.value.username = slugify(newName);
   }
 );
+
+const useTypes = [
+  {
+    title: 'Farmer',
+    value: 'farmer'
+  },
+  {
+    title: 'User',
+    value: 'user'
+  }
+]
+
 </script>
 
 <template>
@@ -64,10 +76,10 @@ watch(
         ></v-text-field>
       </v-col>
       <v-col cols="12">
-        <v-label class="font-weight-bold mb-1">Password</v-label>
+        <v-label class="font-weight-bold mb-1">User type</v-label>
         <v-select
           v-model="registerFormState.user_type"
-          :items="['farmer', 'user']"
+          :items="useTypes"
         ></v-select>
       </v-col>
       <v-col cols="12">

@@ -18,14 +18,19 @@ const saveOrder = async () => {
 
 const paymentMethods = [
   {
-    title: "Cash deposit",
-    value: "deposit",
+    title: 'Cash deposit',
+    value: 'deposit'
   },
   {
-    title: "Bank transfer",
-    value: "bank_transfer",
-  },
-];
+    title: 'Bank transfer',
+    value: 'bank_transfer'
+  }
+  ,
+  {
+    title: 'Mobile money',
+    value: 'mobile_money'
+  }
+]
 
 const paymentStatus = [
   {
