@@ -7,6 +7,10 @@ useHead({
   title: "Products",
 });
 
+const userId = useCookie<string | any>("user_id");
+
+const userType = useCookie<string | undefined>("user_type");
+
 const {
   isEditingProducts,
   getSingleProduct,
@@ -18,11 +22,22 @@ const {
 
 const router = useRouter();
 
-const response = await useApi<IGetAllProducts>("/products", {
-  method: "GET",
-});
+if (userType.value === "farmer") {
+  const response = await useApi<IGetAllProducts>(
+    `/products/seller/${userId.value}`,
+    {
+      method: "GET",
+    }
+  );
 
-productsFormState.value = response?.data;
+  productsFormState.value = response?.data;
+} else {
+  const response = await useApi<IGetAllProducts>("/products", {
+    method: "GET",
+  });
+
+  productsFormState.value = response?.data;
+}
 
 const columns = ref<TableColumnsType>([
   {
@@ -37,8 +52,7 @@ const columns = ref<TableColumnsType>([
     dataIndex: "name",
     key: "name",
     resizable: true,
-    width: 100,
-    ellipsis: true,
+    width: 120,
   },
   {
     title: "Description",
@@ -46,7 +60,7 @@ const columns = ref<TableColumnsType>([
     key: "description",
     resizable: true,
     ellipsis: true,
-    width: 120,
+    width: 150,
   },
   {
     title: "Category",
@@ -54,13 +68,6 @@ const columns = ref<TableColumnsType>([
     key: "category_id",
     resizable: true,
     width: 60,
-  },
-  {
-    title: "Seller",
-    dataIndex: "seller_id",
-    key: "seller_id",
-    resizable: true,
-    width: 180,
   },
   {
     title: "Quantity",
@@ -128,18 +135,11 @@ const showDeleteConfirm = async (product_id: number) => {
 </script>
 
 <template>
-  <div>
+  <div class="pa-4">
     <!-- ---------------------------------------------- -->
-    <!--Header -->
+    <!--Title -->
     <!-- ---------------------------------------------- -->
-    <BaseHeader
-      title="Products"
-      pageCrumbTitle="Dashboard"
-      pageName="Products"
-      :hasActionButton="true"
-      buttonName="Create Product"
-      buttonRouteTo="/products/new-product"
-    />
+    <h1 class="text-h1 py-4">{{ userType === 'farmer' ? 'My products' : 'Products' }}</h1>
 
     <!-- ---------------------------------------------- -->
     <!--Products table -->
@@ -147,6 +147,14 @@ const showDeleteConfirm = async (product_id: number) => {
     <v-row>
       <v-col cols="12" md="12">
         <div class="py-7 pt-1">
+          <div class="px-3 pb-5">
+            <v-btn color="info" @click="openProductsForm()">
+              <div class="d-flex align-center gap-2">
+                <PlusSquareOutlined :size="24" />
+                Create Product
+              </div>
+            </v-btn>
+          </div>
           <div>
             <a-table
               :dataSource="productsFormState"
@@ -156,14 +164,6 @@ const showDeleteConfirm = async (product_id: number) => {
               :expand-column-width="1000"
             >
               <template #bodyCell="{ column, record }">
-
-                <!-- Seller relation -->
-                <template v-if="column.key === 'seller_id'">
-                  <span v-if="record.seller_id && record.seller_id > 0">
-                    ({{ record.seller.id }}) {{ record.seller.full_name }}
-                  </span>
-                </template>
-
                 <!-- Category relation -->
                 <template v-if="column.key === 'category_id'">
                   <span v-if="record.category_id && record.category_id > 0">

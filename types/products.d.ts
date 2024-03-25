@@ -5,7 +5,6 @@ declare interface IProductsFormState {
   stock_quantity: number;
   units_sold: number;
   price: number;
-  created_by: number | null;
   seller_id: number | null;
   category_id: number | null;
   created_at?: Date | null;

@@ -33,14 +33,13 @@ const sidebarItems = ref([
     to: "/dashboard",
     user_type: ["super_admin", "farmer", "user"],
   },
-
-  // Super admin only
   {
-    title: "Products",
+    title: userType.value === 'farmer' ? 'My Products' : 'Products',
     icon: FileDescriptionIcon,
     to: "/products",
-    user_type: ["super_admin"],
+    user_type: ["super_admin", "farmer"],
   },
+  // Super admin only
   {
     title: "Users",
     icon: UsersIcon,
@@ -72,12 +71,6 @@ const sidebarItems = ref([
     title: "My Sales",
     icon: CashBanknoteIcon,
     to: "/producer/sales",
-    user_type: ["farmer"],
-  },
-  {
-    title: "My Products",
-    icon: FileDescriptionIcon,
-    to: "/producer/products",
     user_type: ["farmer"],
   },
   {

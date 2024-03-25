@@ -77,7 +77,6 @@ if (userType.value === 'farmer') {
 
 <template>
   <div>
-    {{ userFullName }} userFullNameuserFullNameuserFullName
     <v-row>
       <v-col cols="12" md="6" xs="12">
         <v-label class="font-weight-bold mb-1">Name</v-label>
@@ -110,20 +109,21 @@ if (userType.value === 'farmer') {
       </v-col>
       <v-col cols="12" md="6" xs="12">
         <v-label class="font-weight-bold mb-1">Product Category</v-label>
-        <v-select
+        <v-autocomplete
           v-model="productsFormState.category_id"
           outlined
           hide-details
           color="primary"
           :items="formattedProductCategories"
         >
-        </v-select>
+        </v-autocomplete>
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="12" md="6" xs="12">
         <v-label class="font-weight-bold mb-1">Price</v-label>
         <v-text-field
+        type="number"
           variant="outlined"
           v-model="productsFormState.price"
           hide-details

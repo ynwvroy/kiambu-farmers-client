@@ -85,13 +85,6 @@ const columns = ref<TableColumnsType>([
     width: 80,
   },
   {
-    title: "Payment Date",
-    dataIndex: "payment_received_date",
-    key: "payment_received_date",
-    resizable: true,
-    width: 60,
-  },
-  {
     title: "Actions",
     key: "action",
     resizable: true,
@@ -196,13 +189,6 @@ const showDeleteConfirm = async (sale_id: number) => {
                   </span>
                   <span v-else-if="record.payment_method === 'bank_transfer'">
                     <a-tag color="cyan">Bank transfer</a-tag>
-                  </span>
-                </template>
-
-                 <!-- Date -->
-                 <template v-if="column.key === 'payment_received_date'">
-                  <span>
-                    {{ record.payment_received_date.split("T")[0] }}
                   </span>
                 </template>
 

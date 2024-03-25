@@ -1,4 +1,10 @@
 <script setup lang="ts">
+const userType = useCookie("user_type");
+
+const userId = useCookie<string | undefined>("user_id");
+
+const userFullName = useCookie<string | undefined>("full_name");
+
 const { isEditingOrders, ordersFormState, updateSingleOrder, createOrder } =
   useOrders();
 
@@ -39,10 +45,19 @@ const usersResponse = await useApi<IGetAllUsers>("/user", {
 });
 allUsers.value = usersResponse?.data;
 
-const formattedUsers = ref<any>([]);
+const formattedBuyers = ref<any>([]);
 for (let i = 0; i < allUsers.value.length; i++) {
   const farmer = allUsers.value[i];
-  formattedUsers.value.push({
+  formattedBuyers.value.push({
+    title: farmer.full_name,
+    value: farmer.id,
+  });
+}
+
+const formattedSellers = ref<any>([]);
+for (let i = 0; i < allUsers.value.length; i++) {
+  const farmer = allUsers.value[i];
+  formattedSellers.value.push({
     title: farmer.full_name,
     value: farmer.id,
   });
@@ -63,6 +78,14 @@ for (let i = 0; i < allProducts.value.length; i++) {
     value: farmer.id,
   });
 }
+
+if (userType.value === 'farmer') {
+  // Clear the array and add the single farmer object
+  formattedSellers.value = [{
+    title: userFullName.value,
+    value: userId.value,
+  }];
+}
 </script>
 
 <template>
@@ -70,38 +93,38 @@ for (let i = 0; i < allProducts.value.length; i++) {
     <v-row>
       <v-col cols="12" md="6" xs="12">
         <v-label class="font-weight-bold mb-1">Buyer</v-label>
-        <v-select
+        <v-autocomplete
           v-model="ordersFormState.buyer_id"
           outlined
           hide-details
           color="primary"
-          :items="formattedUsers"
+          :items="formattedBuyers"
         >
-        </v-select>
+        </v-autocomplete>
       </v-col>
       <v-col cols="12" md="6" xs="12">
         <v-label class="font-weight-bold mb-1">Seller</v-label>
-        <v-select
+        <v-autocomplete
           v-model="ordersFormState.seller_id"
           outlined
           hide-details
           color="primary"
-          :items="formattedUsers"
+          :items="formattedSellers"
         >
-        </v-select>
+        </v-autocomplete>
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="6">
         <v-label class="font-weight-bold mb-1">Product name</v-label>
-        <v-select
+        <v-autocomplete
           v-model="ordersFormState.product_id"
           outlined
           hide-details
           color="primary"
           :items="formattedProducts"
         >
-        </v-select>
+        </v-autocomplete>
       </v-col>
       <v-col cols="6">
         <v-label class="font-weight-bold mb-1">Quantity</v-label>
@@ -125,27 +148,27 @@ for (let i = 0; i < allProducts.value.length; i++) {
       </v-col>
       <v-col cols="6">
         <v-label class="font-weight-bold mb-1">Status</v-label>
-        <v-select
+        <v-autocomplete
           v-model="ordersFormState.status"
           outlined
           hide-details
           color="primary"
           :items="paymentStatus"
         >
-        </v-select>
+        </v-autocomplete>
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="6">
         <v-label class="font-weight-bold mb-1">Payment Method</v-label>
-        <v-select
+        <v-autocomplete
           v-model="ordersFormState.payment_method"
           outlined
           hide-details
           color="primary"
           :items="paymentMethods"
         >
-        </v-select>
+        </v-autocomplete>
       </v-col>
       <v-col cols="6">
         <v-label class="font-weight-bold mb-1">Transaction ID</v-label>
