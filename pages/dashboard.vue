@@ -11,15 +11,15 @@ useHead({
       <v-row>
         <!-- Sales overview -->
         <v-col cols="12" lg="8">
-          <BaseSalesOverview />
+          <!-- <BaseSalesOverview /> -->
         </v-col>
         <!-- Yearly Breakup / Monthly Earnings -->
         <v-col cols="12" lg="4">
           <div class="mb-6">
-            <BaseYearlyBreakup />
+            <!-- <BaseYearlyBreakup /> -->
           </div>
           <div>
-            <BaseMonthlyEarning />
+            <!-- <BaseMonthlyEarning /> -->
           </div>
         </v-col>
         <!-- Recent transaction -->

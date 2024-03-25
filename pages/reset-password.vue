@@ -28,7 +28,7 @@ useHead({
               <div class="text-body-1 text-muted text-center mb-3">
                 One-stop events platform
               </div>
-              <FormsAuthResetPasswordForm />
+              <FormsResetPasswordForm />
               <h6
                 class="text-h6 text-muted font-weight-medium d-flex justify-center align-center mt-3"
               >

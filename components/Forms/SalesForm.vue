@@ -159,15 +159,6 @@ for (let i = 0; i < allProducts.value.length; i++) {
         >
         </v-select>
       </v-col>
-      <!-- <v-col cols="12" md="6" xs="12">
-        <v-label class="font-weight-bold mb-1">Payment Date</v-label>
-        <v-text-field
-          variant="outlined"
-          v-model="salesFormState.payment_received_date"
-          hide-details
-          color="primary"
-        ></v-text-field>
-      </v-col> -->
     </v-row>
 
     <v-row class="py-12 px-6" justify="end">
