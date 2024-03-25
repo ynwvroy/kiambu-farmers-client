@@ -92,18 +92,6 @@ watch(
   </v-row>
   <v-row>
     <v-col cols="12" md="6" xs="12">
-      <v-label class="font-weight-bold mb-1">Organization</v-label>
-      <v-text-field
-        v-model="userFormState.organization_id"
-        variant="outlined"
-        placeholder="Organization ID"
-        hide-details
-        color="primary"
-      ></v-text-field>
-    </v-col>
-  </v-row>
-  <v-row>
-    <v-col cols="12" md="6" xs="12">
       <v-label class="font-weight-bold mb-1">Is verified</v-label>
       <v-text-field
         v-model="userFormState.is_verified"

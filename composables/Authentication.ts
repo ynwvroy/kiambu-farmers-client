@@ -31,7 +31,6 @@ export function useAuthentication() {
       password: "",
       user_type: "user",
       profile_url: "",
-      organization_id: "",
       is_verified: false,
     })
   );
@@ -45,7 +44,6 @@ export function useAuthentication() {
       password: "",
       user_type: "user",
       profile_url: "",
-      organization_id: "",
       is_verified: false,
     };
   };

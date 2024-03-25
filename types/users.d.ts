@@ -7,7 +7,6 @@ declare interface IUserFormState {
   email: string;
   password?: string;
   user_type: string;
-  organization_id: string | number;
   is_verified: boolean;
   created_at?: Date | null;
   updated_at?: Date | null;

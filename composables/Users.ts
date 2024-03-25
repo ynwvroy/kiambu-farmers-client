@@ -9,9 +9,6 @@ export function useUsers() {
   const userEmail = useCookie<string | undefined>("email");
   const userType = useCookie<string | undefined>("user_type");
   const userPhone = useCookie<string | undefined>("phone_number");
-  const userOrganizationId = useCookie<string | number | undefined>(
-    "organization_id"
-  );
 
   const setUserCookies = (user: IGetSingleUserResponse) => {
     userType.value = user?.data?.user_type;
@@ -19,7 +16,6 @@ export function useUsers() {
     userName.value = user?.data?.username;
     userEmail.value = user?.data?.email;
     userPhone.value = user?.data.phone_number;
-    userOrganizationId.value = user?.data.organization_id;
   };
 
   const isEditingUser = useState<boolean>("is-editing-user", () => false);
@@ -39,7 +35,6 @@ export function useUsers() {
     profile_url: "",
     email: "",
     user_type: "",
-    organization_id: "",
     created_at: null,
     updated_at: null,
   }));
@@ -60,7 +55,6 @@ export function useUsers() {
       profile_url: "",
       email: "",
       user_type: "",
-      organization_id: "",
       created_at: null,
       updated_at: null,
     };

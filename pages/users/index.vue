@@ -71,12 +71,6 @@ const columns = ref<TableColumnsType>([
     resizable: true,
   },
   {
-    title: "Organization",
-    dataIndex: "organization_id",
-    key: "organization_id",
-    resizable: true,
-  },
-  {
     title: "User Type",
     dataIndex: "user_type",
     key: "user_type",
@@ -194,20 +188,11 @@ const showDeleteConfirm = async (user_id: number) => {
                     <a-tag color="red"> User </a-tag>
                   </span>
                   <span v-else-if="record.user_type === 'farmer'">
-                    <a-tag color="blue">Organizer</a-tag>
+                    <a-tag color="blue">Farmer</a-tag>
                   </span>
                   <span v-else-if="record.user_type === 'super_admin'">
                     <a-tag color="grey">Super Admin</a-tag>
                   </span>
-                </template>
-
-                <!-- Organization relation -->
-                <template v-if="column.key === 'organization_id'">
-                  <span v-if="record.organization_id !== null">
-                    ({{ record.organization.id }})
-                    {{ record.organization.name }}
-                  </span>
-                  <span v-else> NO-ORGANIZATION </span>
                 </template>
 
                 <!-- Date -->
