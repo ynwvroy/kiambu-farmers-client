@@ -9,12 +9,6 @@
         </div>
       </div>
       <div>
-        <v-btn>
-          About KFA
-        </v-btn>
-        <v-btn>
-          Join as a producer
-        </v-btn>
         <v-btn variant="flat" to="/login" style="background: #5d87ff; color: white">
           Login
         </v-btn>

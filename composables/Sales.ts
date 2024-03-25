@@ -198,7 +198,7 @@ export function useSales() {
           placement: "bottomRight",
           duration: 8,
         });
-
+        // await getAllSales()
         return deleteSaleResponse.data?.data;
       } else if (deleteSaleResponse.data?.code === "E_ROW_NOT_FOUND") {
         notification["warning"]({

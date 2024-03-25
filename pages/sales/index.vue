@@ -44,28 +44,30 @@ const columns = ref<TableColumnsType>([
     dataIndex: "farmer_id",
     key: "farmer_id",
     resizable: true,
-    width: 120,
+    width: 100,
+    ellipsis: true,
   },
   {
     title: "Transaction ID",
     dataIndex: "payment_transaction_id",
     key: "payment_transaction_id",
     resizable: true,
-    width: 120,
+    width: 80,
   },
   {
     title: "Payment Method",
     dataIndex: "payment_method",
     key: "payment_method",
     resizable: true,
-    width: 120,
+    width: 80,
   },
   {
     title: "Product",
     dataIndex: "product_id",
     key: "product_id",
     resizable: true,
-    width: 150,
+    width: 120,
+    ellipsis: true,
   },
   {
     title: "Total Amount",
@@ -176,10 +178,49 @@ const showDeleteConfirm = async (sale_id: number) => {
                   </span>
                 </template>
 
+                <!-- transaction_id -->
+                <template v-if="column.key === 'payment_transaction_id'">
+                  <div
+                    style="
+                      color: blue !important;
+                      text-decoration: underline !important;
+                    "
+                  >
+                    {{ record.payment_transaction_id }}
+                  </div>
+                </template>
+
                 <!-- Product relation -->
                 <template v-if="column.key === 'product_id'">
                   <span v-if="record.product_id && record.product_id > 0">
                     ({{ record.product.id }}) {{ record.product.name }}
+                  </span>
+                </template>
+
+                <!-- Payment status -->
+                <template v-if="column.key === 'payment_status'">
+                  <span v-if="record.payment_status === 'paid'">
+                    <a-tag color="success"> Paid </a-tag>
+                  </span>
+                  <span v-else-if="record.payment_status === 'pending'">
+                    <a-tag color="red">Pending</a-tag>
+                  </span>
+                </template>
+
+                <!-- Date -->
+                <template v-if="column.key === 'payment_received_date'">
+                  <span>
+                    {{ record.payment_received_date.split(" ")[0] }}
+                  </span>
+                </template>
+
+                <!-- Payment method -->
+                <template v-if="column.key === 'payment_method'">
+                  <span v-if="record.payment_method === 'deposit'">
+                    <a-tag color="success"> Cash deposit </a-tag>
+                  </span>
+                  <span v-else-if="record.payment_method === 'bank_transfer'">
+                    <a-tag color="cyan">Bank transfer</a-tag>
                   </span>
                 </template>
 

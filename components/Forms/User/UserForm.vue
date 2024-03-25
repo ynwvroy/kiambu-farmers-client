@@ -19,6 +19,32 @@ watch(
     userFormState.value.username = slugify(newName);
   }
 );
+
+const userTypes = [
+  {
+    title: "Super admin",
+    value: "super_admin",
+  },
+  {
+    title: "Farmer",
+    value: "farmer",
+  },
+  {
+    title: "Regular User",
+    value: "user",
+  },
+];
+
+const verification = [
+  {
+    title: "Is verified",
+    value: true,
+  },
+  {
+    title: "Not verified",
+    value: false,
+  },
+];
 </script>
 
 <template>
@@ -81,25 +107,27 @@ watch(
     </v-col>
     <v-col cols="12" md="6" xs="12">
       <v-label class="font-weight-bold mb-1">User type</v-label>
-      <v-text-field
+      <v-select
         v-model="userFormState.user_type"
-        variant="outlined"
-        placeholder="User type"
+        outlined
         hide-details
         color="primary"
-      ></v-text-field>
+        :items="userTypes"
+      >
+      </v-select>
     </v-col>
   </v-row>
   <v-row>
     <v-col cols="12" md="6" xs="12">
-      <v-label class="font-weight-bold mb-1">Is verified</v-label>
-      <v-text-field
+      <v-label class="font-weight-bold mb-1">Verification</v-label>
+      <v-select
         v-model="userFormState.is_verified"
-        variant="outlined"
-        placeholder="Verification status"
+        outlined
         hide-details
         color="primary"
-      ></v-text-field>
+        :items="verification"
+      >
+      </v-select>
     </v-col>
   </v-row>
 

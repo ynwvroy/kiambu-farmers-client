@@ -83,12 +83,6 @@ const columns = ref<TableColumnsType>([
     resizable: true,
   },
   {
-    title: "Contact",
-    dataIndex: "write_email",
-    key: "write_email",
-    resizable: true,
-  },
-  {
     title: "Actions",
     key: "action",
     resizable: true,
@@ -185,13 +179,13 @@ const showDeleteConfirm = async (user_id: number) => {
                 <!-- User type -->
                 <template v-if="column.key === 'user_type'">
                   <span v-if="record.user_type === 'user'">
-                    <a-tag color="red"> User </a-tag>
+                    <a-tag color="blue"> User </a-tag>
                   </span>
                   <span v-else-if="record.user_type === 'farmer'">
-                    <a-tag color="blue">Farmer</a-tag>
+                    <a-tag color="success">Farmer</a-tag>
                   </span>
                   <span v-else-if="record.user_type === 'super_admin'">
-                    <a-tag color="grey">Super Admin</a-tag>
+                    <a-tag color="cyan">Super Admin</a-tag>
                   </span>
                 </template>
 
@@ -208,11 +202,6 @@ const showDeleteConfirm = async (user_id: number) => {
                     <PhoneOutlined />
                     {{ record.phone_number }}
                   </div>
-                </template>
-
-                <!-- Write email -->
-                <template v-if="column.key === 'write_email'">
-                  <v-btn color="primary"> Email </v-btn>
                 </template>
 
                 <!-- Actions -->

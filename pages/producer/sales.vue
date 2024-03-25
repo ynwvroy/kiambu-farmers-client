@@ -179,6 +179,33 @@ const showDeleteConfirm = async (sale_id: number) => {
                   </span>
                 </template>
 
+                <!-- Payment status -->
+                <template v-if="column.key === 'payment_status'">
+                  <span v-if="record.payment_status === 'paid'">
+                    <a-tag color="success"> Paid </a-tag>
+                  </span>
+                  <span v-else-if="record.payment_status === 'pending'">
+                    <a-tag color="red">Pending</a-tag>
+                  </span>
+                </template>
+
+                <!-- Payment method -->
+                <template v-if="column.key === 'payment_method'">
+                  <span v-if="record.payment_method === 'deposit'">
+                    <a-tag color="success"> Cash deposit </a-tag>
+                  </span>
+                  <span v-else-if="record.payment_method === 'bank_transfer'">
+                    <a-tag color="cyan">Bank transfer</a-tag>
+                  </span>
+                </template>
+
+                 <!-- Date -->
+                 <template v-if="column.key === 'payment_received_date'">
+                  <span>
+                    {{ record.payment_received_date.split("T")[0] }}
+                  </span>
+                </template>
+
                 <!-- Actions -->
                 <template v-if="column.key === 'action'">
                   <TrashIcon

@@ -37,7 +37,8 @@ const columns = ref<TableColumnsType>([
     dataIndex: "name",
     key: "name",
     resizable: true,
-    width: 120,
+    width: 100,
+    ellipsis: true,
   },
   {
     title: "Description",
@@ -45,7 +46,7 @@ const columns = ref<TableColumnsType>([
     key: "description",
     resizable: true,
     ellipsis: true,
-    width: 150,
+    width: 120,
   },
   {
     title: "Category",
