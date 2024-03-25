@@ -33,6 +33,39 @@ const paymentMethods = [
     value: 'bank_transfer'
   }
 ]
+
+const allFarmers = ref<any>();
+
+const farmersResponse = await useApi<IGetAllUsers>("/user/all/farmers", {
+  method: "GET",
+});
+
+allFarmers.value = farmersResponse?.data;
+
+const formattedFarmers = ref<any>([]);
+for (let i = 0; i < allFarmers.value.length; i++) {
+  const farmer = allFarmers.value[i];
+  formattedFarmers.value.push({
+    title: farmer.full_name,
+    value: farmer.id,
+  });
+}
+
+const allProducts = ref<any>();
+
+const productsResponse = await useApi<IGetAllProducts>("/products", {
+  method: "GET",
+});
+allProducts.value = productsResponse?.data;
+
+const formattedProducts = ref<any>([]);
+for (let i = 0; i < allProducts.value.length; i++) {
+  const farmer = allProducts.value[i];
+  formattedProducts.value.push({
+    title: farmer.name,
+    value: farmer.id,
+  });
+}
 </script>
 
 <template>
@@ -40,12 +73,20 @@ const paymentMethods = [
     <v-row>
       <v-col cols="12" md="6" xs="12">
         <v-label class="font-weight-bold mb-1">Seller</v-label>
-        <v-text-field
+        <!-- <v-text-field
           v-model="salesFormState.farmer_id"
           variant="outlined"
           hide-details
           color="primary"
-        ></v-text-field>
+        ></v-text-field> -->
+        <v-select
+        v-model="salesFormState.farmer_id"
+          outlined
+          hide-details
+          color="primary"
+          :items="formattedFarmers"
+        >
+        </v-select>
       </v-col>
       <v-col cols="12" md="6" xs="12">
         <v-label class="font-weight-bold mb-1">Transaction ID</v-label>
@@ -71,12 +112,20 @@ const paymentMethods = [
       </v-col>
       <v-col cols="12" md="6" xs="12">
         <v-label class="font-weight-bold mb-1">Product</v-label>
-        <v-text-field
+        <!-- <v-text-field
           v-model="salesFormState.product_id"
           variant="outlined"
           hide-details
           color="primary"
-        ></v-text-field>
+        ></v-text-field> -->
+        <v-select
+        v-model="salesFormState.product_id"
+          outlined
+          hide-details
+          color="primary"
+          :items="formattedProducts"
+        >
+        </v-select>
       </v-col>
     </v-row>
     <v-row>

@@ -91,13 +91,13 @@ const columns = ref<TableColumnsType>([
     resizable: true,
     width: 80,
   },
-  {
-    title: "Payment Date",
-    dataIndex: "payment_received_date",
-    key: "payment_received_date",
-    resizable: true,
-    width: 60,
-  },
+  // {
+  //   title: "Payment Date",
+  //   dataIndex: "payment_received_date",
+  //   key: "payment_received_date",
+  //   resizable: true,
+  //   width: 60,
+  // },
   {
     title: "Actions",
     key: "action",
@@ -208,11 +208,11 @@ const showDeleteConfirm = async (sale_id: number) => {
                 </template>
 
                 <!-- Date -->
-                <template v-if="column.key === 'payment_received_date'">
+                <!-- <template v-if="column.key === 'payment_received_date' && column.key !== null && column.key !== ''">
                   <span>
                     {{ record.payment_received_date.split(" ")[0] }}
                   </span>
-                </template>
+                </template> -->
 
                 <!-- Payment method -->
                 <template v-if="column.key === 'payment_method'">

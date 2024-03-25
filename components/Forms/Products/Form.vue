@@ -1,6 +1,10 @@
 <script setup lang="ts">
 const userType = useCookie("user_type");
 
+const userId = useCookie<string | undefined>("user_id");
+
+const userFullName = useCookie<string | undefined>("full_name");
+
 const {
   isEditingProducts,
   productsFormState,
@@ -14,7 +18,9 @@ const saveProduct = async () => {
   } else {
     await createProduct();
   }
+
 };
+
 
 const productCategories = ref<any>();
 
@@ -52,10 +58,26 @@ for (let i = 0; i < allFarmers.value.length; i++) {
     value: farmer.id,
   });
 }
+
+if (userType.value === 'farmer') {
+  // Clear the array and add the single farmer object
+  formattedFarmers.value = [{
+    title: userFullName.value,
+    value: userId.value,
+  }];
+} else {
+  // If userType is not 'farmer', populate the array with all farmers
+  formattedFarmers.value = allFarmers.value.map((farmer: any) => ({
+    title: farmer.full_name,
+    value: farmer.id,
+  }));
+}
+
 </script>
 
 <template>
   <div>
+    {{ userFullName }} userFullNameuserFullNameuserFullName
     <v-row>
       <v-col cols="12" md="6" xs="12">
         <v-label class="font-weight-bold mb-1">Name</v-label>
@@ -112,14 +134,8 @@ for (let i = 0; i < allFarmers.value.length; i++) {
     <v-row>
       <v-col cols="12" md="6" xs="12">
         <v-label class="font-weight-bold mb-1">Seller</v-label>
-        <!-- <v-text-field
-          variant="outlined"
-          v-model="productsFormState.seller_id"
-          hide-details
-          color="primary"
-        ></v-text-field> -->
         <v-select
-        v-model="productsFormState.seller_id"
+          v-model="productsFormState.seller_id"
           outlined
           hide-details
           color="primary"
