@@ -40,13 +40,6 @@ const columns = ref<TableColumnsType>([
     width: 30,
   },
   {
-    title: "Banner",
-    dataIndex: "banner_url",
-    key: "banner_url",
-    resizable: true,
-    width: 30,
-  },
-  {
     title: "Name",
     dataIndex: "name",
     key: "name",
@@ -135,14 +128,6 @@ const showDeleteConfirm = async (category_id: number) => {
               :expand-column-width="100"
             >
               <template #bodyCell="{ column, record }">
-                <!-- Banner -->
-                <template v-if="column.key === 'banner_url'">
-                  <v-img
-                    :src="record.banner_url"
-                    style="height: 2rem; width: 2rem"
-                  />
-                </template>
-
                 <!-- Actions -->
                 <template v-if="column.key === 'action'">
                   <TrashIcon

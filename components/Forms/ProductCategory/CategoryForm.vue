@@ -53,18 +53,6 @@ watch(
         </div>
       </v-col>
       <v-col cols="12" md="6" xs="12">
-        <v-label class="font-weight-bold mb-1">Banner</v-label>
-        <v-textarea
-          v-model="ProductCategoryFormState.banner_url"
-          placeholder="Give a banner image for this category."
-          rows="5"
-          variant="outlined"
-          hide-details
-          color="primary"
-        >
-        </v-textarea>
-      </v-col>
-      <v-col cols="12">
         <v-label class="font-weight-bold mb-1">Description</v-label>
         <v-textarea
           v-model="ProductCategoryFormState.description"
@@ -87,7 +75,7 @@ watch(
     <p class="text-center">
       The category will have this default link:
       <a
-        style="text-decoration: underline;"
+        style="text-decoration: underline"
         target="_blank"
         :href="`https://kiambu-farmers.com/product-categories/${ProductCategoryFormState.slug}`"
         >https://kiambu-farmers.com/product-categories/{{

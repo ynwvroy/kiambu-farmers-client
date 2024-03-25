@@ -3,7 +3,6 @@ declare interface IProductCategoryFormState {
   name: string;
   description: string;
   slug: string;
-  banner_url: string;
   created_at?: Date | null;
   updated_at?: Date | null;
 }

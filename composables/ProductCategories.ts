@@ -22,7 +22,6 @@ export function useProductCategories() {
       name: "",
       description: "",
       slug: "",
-      banner_url: "",
     })
   );
 
@@ -38,7 +37,6 @@ export function useProductCategories() {
       name: "",
       description: "",
       slug: "",
-      banner_url: "",
       created_at: null,
       updated_at: null,
     };
