@@ -31,9 +31,9 @@ useHead({
           <BaseProductPerformance />
         </v-col>
         <!-- Product Cards -->
-        <v-col cols="12">
+        <!-- <v-col cols="12">
           <BaseProductCards />
-        </v-col>
+        </v-col> -->
       </v-row>
     </v-col>
   </v-row>

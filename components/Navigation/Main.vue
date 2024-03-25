@@ -32,9 +32,9 @@ const sidebarItems = ref([
     user_type: ["super_admin", "farmer", "user"],
   },
   {
-    title: "Finance Overview",
+    title: "My Sales",
     icon: CashBanknoteIcon,
-    to: "/producer/finance-overview",
+    to: "/producer/sales",
     user_type: ["farmer"],
   },
   {
@@ -44,9 +44,9 @@ const sidebarItems = ref([
     user_type: ["super_admin"],
   },
   {
-    title: "Finance Analysis",
+    title: "Sales",
     icon: IconCoins,
-    to: "/finance-analysis",
+    to: "/sales",
     user_type: ["super_admin"],
   },
   {
@@ -69,7 +69,7 @@ const sidebarItems = ref([
     user_type: ["farmer"],
   },
   {
-    title: "Orders",
+    title: "My Orders",
     icon: IconShoppingCart,
     to: "/producer/orders",
     user_type: ["farmer"],
@@ -81,12 +81,12 @@ const sidebarItems = ref([
     to: "/producer/income-expense",
     user_type: ["farmer"],
   },
-  {
-    title: "Weather Forecast",
-    icon: CloudIcon,
-    to: "/producer/forecast",
-    user_type: ["farmer"],
-  },
+  // {
+  //   title: "Weather Forecast",
+  //   icon: CloudIcon,
+  //   to: "/producer/forecast",
+  //   user_type: ["farmer"],
+  // },
   {
     title: "View orders",
     icon: ComponentsIcon,

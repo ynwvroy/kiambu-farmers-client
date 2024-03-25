@@ -15,6 +15,17 @@ const saveProduct = async () => {
     await createProduct();
   }
 };
+
+const productCategories = ref<IGetAllProductCategories>();
+
+
+
+const productCategoriesResponse = await useApi<IGetAllProductCategories>("/product-categories", {
+  method: "GET",
+});
+
+productCategories.value = productCategoriesResponse?.data
+
 </script>
 
 <template>
