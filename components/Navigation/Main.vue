@@ -9,9 +9,9 @@ import {
 } from "vue-tabler-icons";
 
 import {
-  IconShoppingCart,
+  IconPlant,
   IconCurrencyEuro,
-  IconChartPie2,
+  IconPig,
   IconTruckDelivery,
   IconAlignBoxLeftMiddle,
   IconCoins,
@@ -49,6 +49,18 @@ const sidebarItems = ref([
     title: userType.value === 'farmer' ? 'My Orders' : 'Orders',
     icon: IconTruckDelivery,
     to: "/orders",
+    user_type: ["super_admin", "farmer"],
+  },
+  {
+    title: userType.value === 'farmer' ? 'My Livestock' : 'Livestock',
+    icon: IconPig,
+    to: "/livestock",
+    user_type: ["super_admin", "farmer"],
+  },
+  {
+    title: userType.value === 'farmer' ? 'My Crops' : 'Crops',
+    icon: IconPlant,
+    to: "/crops",
     user_type: ["super_admin", "farmer"],
   },
   // Super admin only
