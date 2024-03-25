@@ -64,6 +64,13 @@ watch(
         ></v-text-field>
       </v-col>
       <v-col cols="12">
+        <v-label class="font-weight-bold mb-1">Password</v-label>
+        <v-select
+          v-model="registerFormState.user_type"
+          :items="['farmer', 'user']"
+        ></v-select>
+      </v-col>
+      <v-col cols="12">
         <v-btn type="submit" color="primary" size="large" block flat
           >Sign up</v-btn
         >
