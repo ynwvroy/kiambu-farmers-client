@@ -30,7 +30,7 @@ const sidebarItems = ref([
   {
     title: "Dashboard",
     icon: LayoutDashboardIcon,
-    to: "/home",
+    to: "/dashboard",
     user_type: ["super_admin", "farmer", "user"],
   },
 
@@ -38,31 +38,31 @@ const sidebarItems = ref([
   {
     title: "Products",
     icon: FileDescriptionIcon,
-    to: "/products",
+    to: "/admin/products",
     user_type: ["super_admin"],
   },
   {
     title: "Users",
     icon: UsersIcon,
-    to: "/users",
+    to: "/admin/users",
     user_type: ["super_admin"],
   },
   {
     title: "Sales",
     icon: IconCoins,
-    to: "/sales",
+    to: "/admin/sales",
     user_type: ["super_admin"],
   },
   {
     title: "Product Categories",
     icon: IconAlignBoxLeftMiddle,
-    to: "/product-categories",
+    to: "/admin/product-categories",
     user_type: ["super_admin"],
   },
   {
     title: "Orders",
     icon: IconTruckDelivery,
-    to: "/orders",
+    to: "/admin/orders",
     user_type: ["super_admin"],
   },
 
@@ -98,7 +98,7 @@ const sidebarItems = ref([
   {
     title: "My orders",
     icon: ComponentsIcon,
-    to: "/my-tickets",
+    to: "/regular/my-orders",
     user_type: ["user"],
   },
 ]);

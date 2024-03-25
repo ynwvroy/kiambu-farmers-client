@@ -92,7 +92,7 @@ export function useAuthentication() {
 
         resetLoginFormState();
 
-        router.push("/home");
+        router.push("/dashboard");
       } else if (
         response?.data?.message ===
         "E_INVALID_AUTH_PASSWORD: Password mis-match"
@@ -151,7 +151,7 @@ export function useAuthentication() {
 
         resetLoginFormState();
 
-        router.push("/home");
+        router.push("/dashboard");
       } else if (
         response?.data?.message ===
         "E_INVALID_AUTH_PASSWORD: Password mis-match"
