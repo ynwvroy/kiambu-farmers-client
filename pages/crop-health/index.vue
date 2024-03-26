@@ -18,7 +18,7 @@ const {
   resetCropHealthFormState,
   getSingleCropHealth,
   deleteCropHealth,
-  livestockFormState,
+  cropHealthFormState,
   getAllCropHealth,
   cropHealth,
 } = useCropHealth();
@@ -99,7 +99,7 @@ function handleResizeColumn(w: any, col: any) {
 const editCropHealth = async (crop_health_id: number) => {
   isEditingCropHealth.value = true;
   const response = await getSingleCropHealth(crop_health_id);
-  router.push(`/livestock/${response?.id}`);
+  router.push(`/crop-health/${response?.id}`);
 };
 
 const showDeleteConfirm = async (crop_health_id: number) => {

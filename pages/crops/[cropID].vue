@@ -1,8 +1,8 @@
 <script setup lang="ts">
-const { ordersFormState, isEditingOrders } = useOrders();
+const { isEditingCrops } = useCrops();
 
 useHead({
-  title: "Single Order",
+  title: "Single crop",
 });
 </script>
 
@@ -10,10 +10,10 @@ useHead({
   <v-row>
     <v-col cols="12" md="12">
       <BaseCard
-        :title="isEditingOrders === true ? 'Reviewing order' : 'New order'"
+        :title="isEditingCrops === true ? 'Reviewing crop' : 'New crop'"
       >
         <div class="pa-6">
-          <FormsOrdersForm />
+          <FormsCropsForm />
         </div>
       </BaseCard>
     </v-col>

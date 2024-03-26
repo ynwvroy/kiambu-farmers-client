@@ -102,6 +102,7 @@ function handleResizeColumn(w: any, col: any) {
 }
 
 const editCrop = async (crop_id: string) => {
+  console.log('called editCrop')
   isEditingCrops.value = true;
   const response = await getSingleCrop(crop_id);
   router.push(`/crops/${response?.id}`);

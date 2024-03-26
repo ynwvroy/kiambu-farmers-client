@@ -6,8 +6,11 @@ export function useCrops() {
 
   const crops = ref<IGetAllCrops>();
 
-  const isEditingCrops = ref<boolean>(false);
-
+  // const isEditingCrops = ref<boolean>(false);
+  const isEditingCrops = useState<boolean>(
+    "is-editing-crops",
+    () => false
+  );
   /**
    * ---------------------------------------------------
    * Crops FormState

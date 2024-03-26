@@ -2,7 +2,13 @@ export function useCropHealth() {
   const router = useRouter();
   const userId = useCookie<string | any>("user_id");
   const cropHealth = ref<ICropHealthFormState[]>([]);
-  const isEditingCropHealth = ref<boolean>(false);
+  // const isEditingCropHealth = ref<boolean>(false);
+
+  const isEditingCropHealth = useState<boolean>(
+    "is-editing-crop-health",
+    () => false
+  );
+
 
   /**
    * ---------------------------------------------------
@@ -71,6 +77,7 @@ const getSingleCropHealth = async (id: number) => {
       method: 'GET',
     });
     if (response?.success) {
+      cropHealthFormState.value = response?.data
       return response.data;
     } else {
       notification.error({
@@ -133,14 +140,11 @@ const getSingleCropHealth = async (id: number) => {
    * Update existing crop health record
    * ---------------------------------------------------
    */
-  const updateCropHealth = async (
-    id: number,
-    newData: ICropHealthFormState
-  ) => {
+  const updateCropHealth = async (  id: number | undefined) => {
     try {
       const response = await useApi(`/crop-health/${id}`, {
         method: "PUT",
-        data: newData,
+        data: cropHealthFormState.value,
       });
       if (response?.success) {
         notification.success({
@@ -149,6 +153,8 @@ const getSingleCropHealth = async (id: number) => {
           placement: "bottomRight",
           duration: 8,
         });
+
+        router.push('/crop-health')
         // Optionally, you can fetch the updated data or perform other actions here
         return response.data;
       } else {
