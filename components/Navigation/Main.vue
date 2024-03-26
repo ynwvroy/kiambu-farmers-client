@@ -31,12 +31,12 @@ const sidebarItems = ref([
   { header: "Regular customer", user_type: ["user"] },
 
   // Common for all
-  {
-    title: "Dashboard",
-    icon: LayoutDashboardIcon,
-    to: "/dashboard",
-    user_type: ["super_admin", "farmer", "user"],
-  },
+  // {
+  //   title: "Dashboard",
+  //   icon: LayoutDashboardIcon,
+  //   to: "/dashboard",
+  //   user_type: ["super_admin", "farmer", "user"],
+  // },
   {
     title: userType.value === 'farmer' ? 'My Products' : 'Products',
     icon: FileDescriptionIcon,
@@ -107,9 +107,15 @@ const sidebarItems = ref([
 
   // Regular user only
   {
+    title: "All Products",
+    icon: ComponentsIcon,
+    to: "/platform",
+    user_type: ["user"],
+  },
+  {
     title: "My orders",
     icon: ComponentsIcon,
-    to: "/regular/my-orders",
+    to: "/my-orders",
     user_type: ["user"],
   },
 ]);

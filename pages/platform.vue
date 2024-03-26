@@ -1,8 +1,4 @@
 <script setup lang="ts">
-definePageMeta({
-  layout: "guest",
-});
-
 const products = ref<IProductsFormState>();
 
 const response = await useApi<IGetAllProducts>("/products", {

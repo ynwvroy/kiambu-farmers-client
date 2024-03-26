@@ -7,6 +7,8 @@ export function useAuthentication() {
 
   const userId = useCookie<string | any>("user_id");
 
+  const userType = useCookie("user_type");
+
   const accessToken = useCookie("access_token");
 
   const loginFormState = useState<ILoginRequest>("login-form-state", () => ({
@@ -92,7 +94,9 @@ export function useAuthentication() {
 
         resetLoginFormState();
 
-        router.push("/dashboard");
+        userType.value !== 'user' ? router.push("/dashboard") : router.push('platform')
+
+        // router.push("/products");
       } else if (
         response?.data?.message ===
         "E_INVALID_AUTH_PASSWORD: Password mis-match"

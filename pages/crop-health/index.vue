@@ -43,6 +43,13 @@ const columns = ref<TableColumnsType>([
     width: 50,
   },
   {
+    title: "Crop",
+    dataIndex: "crop",
+    key: "crop",
+    resizable: true,
+    width: 150,
+  },
+  {
     title: "Date recorded",
     dataIndex: "date_recorded",
     key: "date_recorded",
@@ -157,6 +164,14 @@ const showDeleteConfirm = async (crop_health_id: number) => {
                     {{ record.date_recorded.split("T")[0] }}
                   </span>
                 </template>
+
+                <!-- Crop -->
+                <template v-if="column.key === 'crop' && column.key !== null && column.key !== 0">
+                  <span>
+                    {{ record.crop.name }}
+                  </span>
+                </template>
+
 
                 <!-- Actions -->
                 <template v-if="column.key === 'action'">

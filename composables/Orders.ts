@@ -100,6 +100,8 @@ export function useOrders() {
         });
 
         router.push("/orders");
+
+        userType.value === "user" ? router.push("/my-orders") : router.push("/orders");
         resetOrdersFormState();
         return response?.data;
       } else {
@@ -159,7 +161,7 @@ export function useOrders() {
           duration: 8,
         });
 
-        router.push("/orders");
+        userType.value === "user" ? router.push("/my-orders") : router.push("/orders");
         resetOrdersFormState();
         isEditingOrders.value = false;
         return response?.data;
