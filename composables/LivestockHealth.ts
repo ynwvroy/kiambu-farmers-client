@@ -91,6 +91,7 @@ const getSingleLivestockHealth = async (id: number) => {
       method: 'GET',
     });
     if (response?.success) {
+      livestockHealthFormState.value = response?.data
       return response.data;
     } else {
       notification.error({
@@ -119,11 +120,11 @@ const getSingleLivestockHealth = async (id: number) => {
    * Create new livestock health record
    * ---------------------------------------------------
    */
-  const createLivestockHealth = async (newData: ILivestockHealthFormState) => {
+  const createLivestockHealth = async () => {
     try {
       const response = await useApi<ICreateLivestockHealthResponse>('/livestock-health', {
         method: 'POST',
-        data: newData,
+        data: livestockHealthFormState.value,
       });
       if (response?.success) {
         notification.success({
@@ -152,11 +153,11 @@ const getSingleLivestockHealth = async (id: number) => {
    * Update existing livestock health record
    * ---------------------------------------------------
    */
-  const updateLivestockHealth = async (id: number, newData: ILivestockHealthFormState) => {
+  const updateLivestockHealth = async (id: number | undefined) => {
     try {
       const response = await useApi<IUpdateLivestockHealthResponse>(`/livestock-health/${id}`, {
         method: 'PUT',
-        data: newData,
+        data: livestockHealthFormState.value,
       });
       if (response?.success) {
         notification.success({
@@ -165,6 +166,9 @@ const getSingleLivestockHealth = async (id: number) => {
           placement: 'bottomRight',
           duration: 8,
         });
+
+        router.push('/livestock-health');
+
         return response.data;
       } else {
         notification.error({

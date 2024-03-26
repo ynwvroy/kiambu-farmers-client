@@ -1,8 +1,8 @@
 <script setup lang="ts">
-const { ordersFormState, isEditingOrders } = useOrders();
+const { isEditingLivestockHealth } = useLivestockHealth();
 
 useHead({
-  title: "Single Order",
+  title: "Single Livestock Health",
 });
 </script>
 
@@ -10,10 +10,10 @@ useHead({
   <v-row>
     <v-col cols="12" md="12">
       <BaseCard
-        :title="isEditingOrders === true ? 'Reviewing order' : 'New order'"
+        :title="isEditingLivestockHealth === true ? 'Reviewing livestock health' : 'New livestock health'"
       >
         <div class="pa-6">
-          <FormsOrdersForm />
+          <FormsLivestockHealthForm />
         </div>
       </BaseCard>
     </v-col>
