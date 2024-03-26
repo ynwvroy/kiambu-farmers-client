@@ -16,7 +16,9 @@ import {
   IconAlignBoxLeftMiddle,
   IconCoins,
   IconClipboardHeart,
-  IconDroplets
+  IconDroplets,
+  IconBuildingBank,
+  IconCreditCardPay
 } from "@tabler/icons-vue";
 
 const sDrawer = ref(true);
@@ -75,6 +77,18 @@ const sidebarItems = ref([
     title: 'Livestock health',
     icon: IconClipboardHeart,
     to: "/livestock-health",
+    user_type: ["super_admin", "farmer"],
+  },
+  {
+    title: 'Incomes',
+    icon: IconBuildingBank,
+    to: "/incomes",
+    user_type: ["super_admin", "farmer"],
+  },
+  {
+    title: 'Expenses',
+    icon: IconCreditCardPay,
+    to: "/expenses",
     user_type: ["super_admin", "farmer"],
   },
   // Super admin only
