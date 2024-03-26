@@ -105,16 +105,6 @@ const sidebarItems = ref([
     user_type: ["super_admin"],
   },
 
-
-
-  // Farmer only
-  {
-    title: "Income & Expenses",
-    icon: IconCurrencyEuro,
-    to: "/producer/income-expense",
-    user_type: ["farmer"],
-  },
-
   // Regular user only
   {
     title: "My orders",

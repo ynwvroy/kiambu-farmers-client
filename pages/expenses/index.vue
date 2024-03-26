@@ -24,7 +24,7 @@ const {
 
 const url =
   userType.value === "farmer"
-    ? `/expenses/seller/${userId.value}`
+    ? `/expenses/farmer/${userId.value}`
     : "/expenses";
 
 const response = await useApi<IGetAllExpenses>(url, {

@@ -1,6 +1,10 @@
 export function useCropHealth() {
   const router = useRouter();
+
+  const userType = useCookie("user_type");
+
   const userId = useCookie<string | any>("user_id");
+
   const cropHealth = ref<ICropHealthFormState[]>([]);
   // const isEditingCropHealth = ref<boolean>(false);
 
@@ -52,12 +56,19 @@ export function useCropHealth() {
    */
   const getAllCropHealth = async () => {
     try {
-      const response = await useApi<ICropHealthFormState[]>(
-        `/crop-health/${userId.value}`,
-        {
-          method: "GET",
-        }
-      );
+      // const response = await useApi<ICropHealthFormState[]>(
+      //   `/crop-health/${userId.value}`,
+      //   {
+      //     method: "GET",
+      //   }
+      // );
+      const url =
+      userType.value === "farmer"
+        ? `/crop-health/farmer/${userId.value}`
+        : "/crop-health";
+    const response = await useApi<IGetAllLivestockHealth>(url, {
+      method: "GET",
+    });
       if (response?.success) {
         cropHealth.value = response.data;
         return response.data;

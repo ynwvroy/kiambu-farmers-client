@@ -25,7 +25,7 @@ const router = useRouter();
 
 const url =
   userType.value === "farmer"
-    ? `/livestock-health/seller/${userId.value}`
+    ? `/livestock-health/farmer/${userId.value}`
     : "/livestock-health";
 
 const response = await useApi<IGetAllLivestockHealth>(url, {

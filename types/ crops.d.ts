@@ -5,6 +5,7 @@ declare interface ICropFormState {
   planted_date: Date;
   harvest_date: Date;
   actual_yield: number;
+  farmer_id: string | number;
   amount_profit: string;
   comments: string;
   created_at?: Date | null;

@@ -20,6 +20,7 @@ export function useCrops() {
   const cropsFormState = useState<ICropFormState>("crops", () => ({
     id: 0,
     name: '',
+    farmer_id: userId.value,
     variety: '',
     planted_date: new Date(),
     harvest_date: new Date(),
@@ -41,6 +42,7 @@ export function useCrops() {
       variety: '',
       planted_date: new Date(),
       harvest_date: new Date(),
+      farmer_id: userId.value,
       actual_yield: 0,
       amount_profit: '',
       comments: ''
@@ -57,7 +59,7 @@ export function useCrops() {
     try {
       const url =
         userType.value === 'farmer'
-          ? `/crops/seller/${userId.value}`
+          ? `/crops/farmer/${userId.value}`
           : '/crops';
       const response = await useApi<IGetAllCrops>(url, {
         method: 'GET'

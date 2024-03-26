@@ -1,7 +1,9 @@
 export function useExpenses() {
   const router = useRouter();
 
-  const userId = useCookie<string | any>("user_id");
+
+  const userType = useCookie('user_type');
+  const userId = useCookie<string | any>('user_id');
 
   const expenses = ref<IGetAllExpenses>();
 
@@ -17,6 +19,7 @@ export function useExpenses() {
     id: 0,
     amount: 0,
     description: "",
+    farmer_id: userId.value,
     comments: "",
     created_at: null,
     updated_at: null,
@@ -34,6 +37,7 @@ export function useExpenses() {
       amount: 0,
       description: "",
       comments: "",
+      farmer_id: userId.value,
       created_at: null,
       updated_at: null,
     };
@@ -47,9 +51,16 @@ export function useExpenses() {
    */
   const getAllExpenses = async () => {
     try {
-      const response = await useApi<IGetAllExpenses>("/expenses", {
-        method: "GET",
-      });
+      // const response = await useApi<IGetAllExpenses>("/expenses", {
+      //   method: "GET",
+      // });
+      const url =
+      userType.value === 'farmer'
+        ? `/expenses/farmer/${userId.value}`
+        : '/expenses';
+    const response = await useApi<IGetAllExpenses>(url, {
+      method: 'GET'
+    });
 
       expenses.value = response?.data;
       return response?.data;

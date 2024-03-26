@@ -3,6 +3,7 @@ declare interface ILivestockFormState {
   name: string;
   type: string;
   breed: string;
+  farmer_id: string | number;
   date_of_birth: Date;
   sex: boolean; // Assuming 'true' for male and 'false' for female
   color: string;

@@ -23,6 +23,7 @@ export function useLivestock() {
     type: "",
     breed: "",
     date_of_birth: null,
+    farmer_id: userId.value,
     sex: false,
     color: "",
     status: "",
@@ -42,6 +43,7 @@ export function useLivestock() {
       type: "",
       breed: "",
       date_of_birth: "",
+      farmer_id: userId.value,
       sex: false,
       color: "",
       status: "",
@@ -59,7 +61,7 @@ export function useLivestock() {
     try {
       const url =
         userType.value === "farmer"
-          ? `/livestock/seller/${userId.value}`
+          ? `/livestock/farmer/${userId.value}`
           : "/livestock";
       const response = await useApi<IGetAllLivestock>(url, {
         method: "GET",

@@ -25,7 +25,7 @@ const {
 
 const url =
   userType.value === "farmer"
-    ? `/crop-health/seller/${userId.value}`
+    ? `/crop-health/farmer/${userId.value}`
     : "/crop-health";
 
 const response = await useApi<IGetAllCropHealth>(url, {

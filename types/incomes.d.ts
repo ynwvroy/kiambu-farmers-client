@@ -2,6 +2,7 @@ declare interface IIncomeFormState {
   id?: number;
   amount: number;
   description: string;
+  farmer_id: string | number;
   comments: string;
   created_at?: Date | null;
   updated_at?: Date | null;

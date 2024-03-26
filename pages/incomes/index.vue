@@ -25,7 +25,7 @@ const {
 
 const url =
   userType.value === "farmer"
-    ? `/incomes/seller/${userId.value}`
+    ? `/incomes/farmer/${userId.value}`
     : "/incomes";
 
 const response = await useApi<IGetAllIncomes>(url, {

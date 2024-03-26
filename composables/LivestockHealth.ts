@@ -55,9 +55,16 @@ export function useLivestockHealth() {
    */
   const getAllLivestockHealth = async () => {
     try {
-      const response = await useApi<IGetAllLivestockHealth>('/livestock-health', {
-        method: 'GET',
-      });
+      // const response = await useApi<IGetAllLivestockHealth>('/livestock-health', {
+      //   method: 'GET',
+      // });
+      const url =
+      userType.value === "farmer"
+        ? `/livestock-health/farmer/${userId.value}`
+        : "/livestock-health";
+    const response = await useApi<IGetAllLivestockHealth>(url, {
+      method: "GET",
+    });
       if (response?.success) {
         livestockHealth.value = response.data;
         return response.data;

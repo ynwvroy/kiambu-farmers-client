@@ -3,6 +3,7 @@ declare interface IExpenseFormState {
   amount: number;
   description: string;
   comments: string;
+  farmer_id: string | number;
   created_at?: Date | null;
   updated_at?: Date | null;
 }

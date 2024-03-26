@@ -1,7 +1,9 @@
 export function useIncomes() {
   const router = useRouter();
 
-  const userId = useCookie<string | any>("user_id");
+
+  const userType = useCookie('user_type');
+  const userId = useCookie<string | any>('user_id');
 
   const incomes = ref<IGetAllIncomes>();
 
@@ -17,6 +19,7 @@ export function useIncomes() {
     id: 0,
     amount: 0,
     description: "",
+    farmer_id: userId.value,
     comments: "",
     created_at: null,
     updated_at: null,
@@ -25,7 +28,7 @@ export function useIncomes() {
   /**
    * ---------------------------------------------------
    * Reset Income FormState
-   * ---------------------------------------------------
+   * ----------------------s-----------------------------
    *
    */
   const resetIncomeFormState = () => {
@@ -33,6 +36,7 @@ export function useIncomes() {
       id: 0,
       amount: 0,
       description: "",
+      farmer_id: userId.value,
       comments: "",
       created_at: null,
       updated_at: null,
@@ -47,9 +51,16 @@ export function useIncomes() {
    */
   const getAllIncomes = async () => {
     try {
-      const response = await useApi<IGetAllIncomes>("/incomes", {
-        method: "GET",
-      });
+      // const response = await useApi<IGetAllIncomes>("/incomes", {
+      //   method: "GET",
+      // });
+      const url =
+      userType.value === 'farmer'
+        ? `/incomes/farmer/${userId.value}`
+        : '/incomes';
+    const response = await useApi<IGetAllIncomes>(url, {
+      method: 'GET'
+    });
 
       incomes.value = response?.data;
       return response?.data;

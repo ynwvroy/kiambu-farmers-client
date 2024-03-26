@@ -24,7 +24,7 @@ const {
 } = useCrops();
 
 const url =
-  userType.value === "farmer" ? `/crops/seller/${userId.value}` : "/crops";
+  userType.value === "farmer" ? `/crops/farmer/${userId.value}` : "/crops";
 
 const response = await useApi<IGetAllCrops>(url, {
   method: "GET",
